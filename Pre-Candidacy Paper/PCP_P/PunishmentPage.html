@@ -1,0 +1,37 @@
+{{ block title }}Punishment Stage{{ endblock }}
+{{ block content }}
+
+    <p>
+        You contributed {{ player.Contribution }}.
+        Here are the other players' contributions:
+    </p>
+    <table class="table">
+        <tr>
+            <th>Endowment</th>
+            <th>Contribution</th>
+            <th>Contribution in percentage of the endowment</th>
+
+        </tr>
+        <tr>
+            <td>{{ C.ENDOWMENT }}</td>
+            <td>{{ p.Contribution }}</td>
+            <td>{{ p.ContributionPercentage }}</td>
+
+        </tr>
+        {{ for p in other_players }}
+            <tr>
+                <td>{{ C.ENDOWMENT }}</td>
+                <td>Player {{ p.Contribution }}</td>
+                <td>{{ p.ContributionPercentage }}</td>
+            </tr>
+        {{ endfor }}
+    </table>
+
+
+
+    {{ formfields }}
+
+
+    {{ next_button }}
+
+{{ endblock }}

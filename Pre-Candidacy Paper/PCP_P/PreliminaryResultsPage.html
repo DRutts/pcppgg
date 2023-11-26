@@ -1,0 +1,28 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+
+    <p>
+        Your contribution to the project is {{ p.Contribution }}.
+        
+    </p>
+    <p>
+        The sum of contributions is {{ TotalContributions }}.
+        
+    </p>
+    <p>
+        You retained {{ p.RetainedEndowment }} tokens from your endowment.
+        
+    </p>
+    <p>
+        You received {{ p.PGEarnings }} tokens from the project.
+        
+    </p>
+    <p>
+        Your total income in this period is  {{ p.PreliminaryPayoff }}.
+        
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}
+

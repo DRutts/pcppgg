@@ -1,0 +1,27 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+
+    <p>
+        Your income at the first stage is {{ p.PreliminaryPayoff }}.
+        
+    </p>
+    <p>
+        Your costs of assigning deduction points are {{ p.TotalPunishmentsFrom }}.
+        
+    </p>
+    <p>
+        You recieved {{ p.TotalPunishmentsTo }} deduction points.
+        
+    </p>
+    <p>
+        Your income is reduced by {{ p.IncomeReduction }} through the deduction points.
+        
+    </p>
+    <p>
+        Your total income in this period is  {{ p.PreliminaryPayoff }}.
+        
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}
