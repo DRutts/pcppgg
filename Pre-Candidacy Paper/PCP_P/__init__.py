@@ -29,10 +29,10 @@ class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
 
-def make_punishment_field(id_in_group):
-    return models.IntegerField(
-        min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
-    )
+    def make_punishment_field(id_in_group):
+        return models.IntegerField(
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
+        )
 
 class Player(BasePlayer):
     Contribution = models.IntegerField(
