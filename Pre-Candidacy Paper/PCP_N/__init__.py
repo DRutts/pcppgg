@@ -24,12 +24,12 @@ class Subsession(BaseSubsession):
     def group_by_arrival_time_method(waiting_players):
         grouped_players = [p for p in waiting_players]
         for player in waiting_players: 
-            player.participant.vars['incomplete'] = 0
+            player.incomplete = 0
         if len(grouped_players) >= 1:
             return [player[1], player[2], player[3], player[4]]
         for player in waiting_players:
             if player.waiting_too_long():
-                player.participant.vars['incomplete'] = 1
+                player.incomplete = 1
                 return[player]
 
 
