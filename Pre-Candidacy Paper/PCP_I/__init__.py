@@ -101,7 +101,7 @@ class Player(BasePlayer):
 
 class Captcha1(Page):
     form_model = 'player'
-    form_fields = 'captcha1'    
+    form_fields = ['captcha1' ]   
     timeout_seconds = 90
 
     def captcha1_error_message(player: Player, values):
@@ -123,7 +123,7 @@ class Captcha1(Page):
 
 class Captcha2(Page):
     form_model = 'player'
-    form_fields = 'captcha2'
+    form_fields = ['captcha2']
     timeout_seconds = 90
 
     @staticmethod
