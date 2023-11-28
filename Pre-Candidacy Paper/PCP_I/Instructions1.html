@@ -8,28 +8,33 @@
     
     </p>
     
-    {% formfield [player.Q1a, player.Q1b] %}
+    {% formfield player.Q1a %}
+    {% formfield player.Q1b %}
 
     <p>
         2. Each group member has an endowment of 20 tokens. Suppose you contribute 20 tokens to the project. All other group members each contribute 20 tokens to the project. 
     
     </p>
 
-    {% formfield [player.Q2a, player.Q2b] %}
+    {% formfield player.Q2a %}
+    {% formfield player.Q2b %}
 
     <p>
         3. Each group member has an endowment of 20 tokens. Suppose the other three group members contribute a total of 30 tokens to the project.
     
     </p>
 
-    {% formfield [player.Q3a, player.Q3b] %}
+    {% formfield player.Q3a %}
+    {% formfield player.Q3b %}
+
 
     <p>
         4. Each group member has an endowment of 20 tokens. Suppose you contribute 8 tokens to the project.
     
     </p>
 
-    {% formfield [player.Q4a, player.Q4b] %}
+    {% formfield player.Q4a %}
+    {% formfield player.Q4b %}
     
 
     {{ next_button }}

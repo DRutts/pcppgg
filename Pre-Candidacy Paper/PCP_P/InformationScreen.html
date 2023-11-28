@@ -14,15 +14,15 @@
         </tr>
         <tr>
             <td>{{ C.ENDOWMENT }}</td>
-            <td>{{ p.Contribution }}</td>
-            <td>{{ p.ContributionPercentage }}</td>
+            <td>{{ player.Contribution }}</td>
+            <td>{{ player.ContributionPercentage }}</td>
 
         </tr>
         {{ for p in other_players }}
             <tr>
                 <td>{{ C.ENDOWMENT }}</td>
-                <td>Player {{ p.Contribution }}</td>
-                <td>{{ p.contribution }}</td>
+                <td>Player {{ player.Contribution }}</td>
+                <td>{{ player.contribution }}</td>
             </tr>
         {{ endfor }}
     </table>
