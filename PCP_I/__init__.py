@@ -154,9 +154,9 @@ class Instructions1(Page):
     form_model = "player"
     form_fields = ["Q1a", "Q1b", "Q2a", "Q2b", "Q3a", "Q3b", "Q4a", "Q4b"]
     
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+    # @staticmethod
+    # def is_displayed(player: Player):
+    #     return player.participant.vars['boot'] == False
 
     @staticmethod
     def error_message(player: Player, values):
@@ -185,9 +185,9 @@ class Instructions1(Page):
     
     
 class Instructions2(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+    # @staticmethod
+    # def is_displayed(player: Player):
+    #     return player.participant.vars['boot'] == False
     form_model = "player"
     form_fields = ["Q5", "Q6", "Q7", "Q8", "Q9"]
     @staticmethod
