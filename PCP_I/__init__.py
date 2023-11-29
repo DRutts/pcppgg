@@ -115,8 +115,7 @@ class Captcha1(Page):
             if player.incorrect_attempts_captcha1 >= 3:
                 player.failed_too_many = True
                 player.participant.vars['boot'] = True
-            else:
-                return '''Please type the characters correctly, case sensitive'''
+            return '''Please type the characters correctly, case sensitive'''
             
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -142,8 +141,7 @@ class Captcha2(Page):
             if player.incorrect_attempts_captcha2 >= 3:
                 player.failed_too_many = True
                 player.participant.vars['boot'] = True
-            else:
-                return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
+            return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
