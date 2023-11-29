@@ -69,19 +69,23 @@ class Player(BasePlayer):
     )
 
     Q5 = models.IntegerField(
-        min=-30, max=30,
+        min=-50, max=50,
         label='5) Suppose at the second stage you assign the following deduction points to your three other group members:-9,-5,0. What are the total costs of your assigned deduction points?'
     )
     Q6 = models.IntegerField(
+        min=-50, max=50,
         label='6) What are your costs if you assign a total of 0 points?'
     )
     Q7 = models.IntegerField(
+        min=-50, max=50,
         label='7) By how many Guilders will your income from the first stage be changed if you receive a total of 0 deduction points from the other group members?'
     )
     Q8 = models.IntegerField(
+        min=-50, max=50,
         label='8) By how many Guilders will your income from the first stage be changed if you receive a total of 4 deduction points from the other group members?'
     )
     Q9 = models.IntegerField(
+        min=-50, max=50,
         label='9) By how many Guilders will your income from the first stage be changed if you receive a total of 15 deduction points from the other group members?'
     )
 
