@@ -137,12 +137,12 @@ class PunishmentPage(Page):
             other_players=player.get_others_in_group(), multiplier = C.PUNISHMENT_MULTIPLIER,
         )
 
-    # def before_next_page(player, timeout_happened):
-    #     if timeout_happened:
-    #         player.PunishmentTo1 = 0
-    #         player.PunishmentTo2 = 0
-    #         player.PunishmentTo3 = 0
-    #         player.PunishmentTo4 = 0
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.PunishmentTo1 = 0
+            player.PunishmentTo2 = 0
+            player.PunishmentTo3 = 0
+            player.PunishmentTo4 = 0
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs

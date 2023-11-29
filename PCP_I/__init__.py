@@ -99,54 +99,54 @@ class Player(BasePlayer):
 # ======================
 
 
-# class Captcha1(Page):
-#     form_model = 'player'
-#     form_fields = ['captcha1']   
-#     timeout_seconds = 90
+class Captcha1(Page):
+    form_model = 'player'
+    form_fields = ['captcha1']   
+    timeout_seconds = 90
 
-#     def captcha1_error_message(player: Player, values):
-#         if values != "RUNAJIX":
-#             player.incorrect_attempts_captcha1 += 1
-#             if player.incorrect_attempts_captcha1 >= 3:
-#                 player.failed_too_many = True
-#                 player.participant.vars['boot'] = True
-#             else:
-#                 return '''Please type the characters correctly, case sensitive'''
+    def captcha1_error_message(player: Player, values):
+        if values != "RUNAJIX":
+            player.incorrect_attempts_captcha1 += 1
+            if player.incorrect_attempts_captcha1 >= 3:
+                player.failed_too_many = True
+                player.participant.vars['boot'] = True
+            else:
+                return '''Please type the characters correctly, case sensitive'''
             
-#     def before_next_page(self):
-#         if self.timeout_happened:
-#             self.player.TimeoutCapthca1 = True
-#             self.player.participant.vars['boot'] = True
-#         else: 
-#             self.player.TimeoutCapthca1 = False
-#             self.player.participant.vars['boot'] = False
+    def before_next_page(self, timeout_happened):
+        if timeout_happened:
+            player.TimeoutCapthca1 = True
+            player.participant.vars['boot'] = True
+        else: 
+            player.TimeoutCapthca1 = False
+            player.participant.vars['boot'] = False
 
 
-# class Captcha2(Page):
-#     form_model = 'player'
-#     form_fields = ['captcha2']
-#     timeout_seconds = 90
+class Captcha2(Page):
+    form_model = 'player'
+    form_fields = ['captcha2']
+    timeout_seconds = 90
 
-#     @staticmethod
-#     def is_displayed(player: Player):
-#         return player.participant.vars['boot'] == False
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
 
-#     def captcha2_error_message(player: Player, values):
-#         if str(values).lower() not in ["eps10 vector", 'eps10 vect0r', "epsio vector", "epsio vect0r", 'eps1o vector', 'eps1o vect0r']:
-#             player.incorrect_attempts_captcha2 += 1
-#             if player.incorrect_attempts_captcha2 >= 3:
-#                 player.failed_too_many = True
-#                 player.participant.vars['boot'] = True
-#             else:
-#                 return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
+    def captcha2_error_message(player: Player, values):
+        if str(values).lower() not in ["eps10 vector", 'eps10 vect0r', "epsio vector", "epsio vect0r", 'eps1o vector', 'eps1o vect0r']:
+            player.incorrect_attempts_captcha2 += 1
+            if player.incorrect_attempts_captcha2 >= 3:
+                player.failed_too_many = True
+                player.participant.vars['boot'] = True
+            else:
+                return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
 
-#     def before_next_page(self):
-#         if self.timeout_happened:
-#             self.player.TimeoutCapthca2 = True
-#             self.player.participant.vars['boot'] = True
-#         else: 
-#             self.player.TimeoutCapthca2 = False
-#             self.player.participant.vars['boot'] = False
+    def before_next_page(self, timeout_happened):
+        if timeout_happened:
+            player.TimeoutCapthca2 = True
+            player.participant.vars['boot'] = True
+        else: 
+            player.TimeoutCapthca2 = False
+            player.participant.vars['boot'] = False
 
 
 class Instructions1(Page):
@@ -154,9 +154,9 @@ class Instructions1(Page):
     form_model = "player"
     form_fields = ["Q1a", "Q1b", "Q2a", "Q2b", "Q3a", "Q3b", "Q4a", "Q4b"]
     
-    # @staticmethod
-    # def is_displayed(player: Player):
-    #     return player.participant.vars['boot'] == False
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
 
     @staticmethod
     def error_message(player: Player, values):
@@ -177,7 +177,7 @@ class Instructions1(Page):
             else:
                 return errors
 
-    def before_next_page(player: Player):
+    def before_next_page(player: Player, timeout_happened):
         if player.failed_too_many == True:
             player.participant.vars['boot'] = True
         else: 
@@ -185,9 +185,9 @@ class Instructions1(Page):
     
     
 class Instructions2(Page):
-    # @staticmethod
-    # def is_displayed(player: Player):
-    #     return player.participant.vars['boot'] == False
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
     form_model = "player"
     form_fields = ["Q5", "Q6", "Q7", "Q8", "Q9"]
     @staticmethod
@@ -205,7 +205,7 @@ class Instructions2(Page):
             else:
                 return errors
     
-    def before_next_page(player: Player):
+    def before_next_page(player: Player, timeout_happened):
         if player.failed_too_many == True:
             player.participant.vars['boot'] = True
         else: 
@@ -216,9 +216,8 @@ class Elimination(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == True
 
-page_sequence = [
-    # Captcha1,
-    #              Captcha2,
+page_sequence = [Captcha1,
+                 Captcha2,
                  Instructions1, 
                  Instructions2,
                  Elimination]
