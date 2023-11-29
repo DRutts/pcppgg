@@ -92,8 +92,8 @@ class ContributionPage(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
     
-    def before_next_page(player: Player, timeout_happened):
-        if player.timeout_happened:
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
             player.Contribution = 0
 
 
@@ -137,8 +137,8 @@ class PunishmentPage(Page):
             other_players=player.get_others_in_group(), multiplier = C.PUNISHMENT_MULTIPLIER,
         )
 
-    def before_next_page(player: Player, timeout_happened):
-        if player.timeout_happened:
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
             player.PunishmentTo1 = 0
             player.PunishmentTo2 = 0
             player.PunishmentTo3 = 0
