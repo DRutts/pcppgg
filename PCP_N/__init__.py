@@ -22,11 +22,10 @@ class C(BaseConstants):
 
 class Subsession(BaseSubsession):
     def group_by_arrival_time_method(subsession, waiting_players):
-        grouped_players = [p for p in waiting_players]
         for player in waiting_players: 
             player.incomplete = 0
-        if len(grouped_players) >= 4:
-            return [player[0], player[1], player[2], player[3]]
+        if len(waiting_players) >= 4:
+            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
         for player in waiting_players:
             if player.waiting_too_long():
                 player.incomplete = 1
