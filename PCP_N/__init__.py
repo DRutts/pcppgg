@@ -26,7 +26,7 @@ class Subsession(BaseSubsession):
         for player in waiting_players: 
             player.incomplete = 0
         if len(grouped_players) >= 4:
-            return [player[1], player[2], player[3], player[4]]
+            return [player[0], player[1], player[2], player[3]]
         for player in waiting_players:
             if player.waiting_too_long():
                 player.incomplete = 1
