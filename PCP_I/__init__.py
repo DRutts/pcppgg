@@ -109,6 +109,7 @@ class Captcha1(Page):
             player.incorrect_attempts_captcha1 += 1
             if player.incorrect_attempts_captcha1 >= 3:
                 player.failed_too_many = True
+                player.participant.vars['boot'] = True
             else:
                 return '''Please type the characters correctly, case sensitive'''
             
