@@ -1,4 +1,5 @@
 from otree.api import *
+import time
 
 
 doc = """
@@ -198,7 +199,7 @@ class Instructions2(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
-    form_model = "player"
+    form_model = "player"1
     form_fields = ["Q5", "Q6", "Q7", "Q8", "Q9"]
     @staticmethod
     def error_message(player: Player, values):
