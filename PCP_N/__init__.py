@@ -21,7 +21,7 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def group_by_arrival_time_method(waiting_players):
+    def group_by_arrival_time_method(subsession, waiting_players):
         grouped_players = [p for p in waiting_players]
         for player in waiting_players: 
             player.incomplete = 0
