@@ -1,5 +1,5 @@
 from otree.api import *
-
+import time
 
 doc = """
 Your app description
@@ -44,8 +44,11 @@ class Player(BasePlayer):
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
+    incomplete = models.IntegerField(initial = 0)
 
-
+    def waiting_too_long(player):
+        participant = player.participant
+        return time.time() - participant.wait_page_arrival > 30*60
 
 
 
