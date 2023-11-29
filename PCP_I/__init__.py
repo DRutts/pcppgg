@@ -112,8 +112,10 @@ class Captcha1(Page):
             else:
                 return '''Please type the characters correctly, case sensitive'''
             
-    def before_next_page(player: Player):
-        if player.timeout_happened:
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
             player.TimeoutCapthca1 = True
             player.participant.vars['boot'] = True
         else: 
