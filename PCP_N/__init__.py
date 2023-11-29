@@ -87,8 +87,8 @@ class ContributionPage(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
-    def before_next_page(player: Player, timeout_happened):
-        if player.timeout_happened:
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
             player.Contribution = 0
 
 
