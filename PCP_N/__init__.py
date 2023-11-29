@@ -110,7 +110,7 @@ class PreliminaryResults(Page):
 
     timeout_seconds = 30
 
-class ShuffleWaitPage1(WaitPage):
+class ShuffleWaitPage(WaitPage):
     group_by_arrival_time = True
     body_text = "Please wait for the other player to join. The waiting time will take at most 20 minutes."
     
