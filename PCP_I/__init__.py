@@ -216,8 +216,9 @@ class Elimination(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == True
 
-page_sequence = [Captcha1,
-                 Captcha2,
+page_sequence = [
+    # Captcha1,
+    #              Captcha2,
                  Instructions1, 
                  Instructions2,
                  Elimination]
