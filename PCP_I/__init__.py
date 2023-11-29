@@ -113,15 +113,13 @@ class Captcha1(Page):
             else:
                 return '''Please type the characters correctly, case sensitive'''
             
-
-    @staticmethod
-    def before_next_page(player, timeout_happened):
-        if timeout_happened:
-            player.TimeoutCapthca1 = True
-            player.participant.vars['boot'] = True
+    def before_next_page(self):
+        if self.timeout_happened:
+            self.player.TimeoutCapthca1 = True
+            self.player.participant.vars['boot'] = True
         else: 
-            player.TimeoutCapthca1 = False
-            player.participant.vars['boot'] = False
+            self.player.TimeoutCapthca1 = False
+            self.player.participant.vars['boot'] = False
 
 
 class Captcha2(Page):
@@ -142,14 +140,13 @@ class Captcha2(Page):
             else:
                 return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
 
-    @staticmethod
-    def before_next_page(player, timeout_happened):
-        if timeout_happened:
-            player.TimeoutCapthca2 = True
-            player.participant.vars['boot'] = True
+    def before_next_page(self):
+        if self.timeout_happened:
+            self.player.TimeoutCapthca2 = True
+            self.player.participant.vars['boot'] = True
         else: 
-            player.TimeoutCapthca2 = False
-            player.participant.vars['boot'] = False
+            self.player.TimeoutCapthca2 = False
+            self.player.participant.vars['boot'] = False
 
 
 class Instructions1(Page):
