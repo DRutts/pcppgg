@@ -43,32 +43,33 @@ class Player(BasePlayer):
     TimeoutQ1 = models.BooleanField(initial = False)
     TimeoutQ2 = models.BooleanField(initial = False)
 
-    Q1a = models.FloatField(
+    Q1a = models.IntegerField(
         label = "a) What is your income?"
     )
-    Q1b = models.FloatField(
+    Q1b = models.IntegerField(
         label = "b) What is the income of the other group members?"
     )
-    Q2a = models.FloatField(
+    Q2a = models.IntegerField(
         label = "a) What is your income?"
     )
-    Q2b = models.FloatField(
+    Q2b = models.IntegerField(
         label = "b) What is the income of the other group members?"
     )
-    Q3a = models.FloatField(
+    Q3a = models.IntegerField(
         label = "a) What is your income if you contribute 0 tokens to the project?"
     )
-    Q3b = models.FloatField(
+    Q3b = models.IntegerField(
         label = "b) What is your income if you contribute 0 tokens to the project?"
     )
-    Q4a = models.FloatField(
+    Q4a = models.IntegerField(
         label = "a) What is your income if the other group members together contribute a total of 7 tokens to the project?"
     )
-    Q4b = models.FloatField(
+    Q4b = models.IntegerField(
         label = "b) What is your income if the other group members together contribute a total of 22 tokens to the project"
     )
 
     Q5 = models.IntegerField(
+        min=-30, max=30,
         label='5) Suppose at the second stage you assign the following deduction points to your three other group members:-9,-5,0. What are the total costs of your assigned deduction points?'
     )
     Q6 = models.IntegerField(
