@@ -109,10 +109,16 @@ class Captcha1(Page):
     form_fields = ['captcha1']   
     timeout_seconds = 90
 
-    def captcha1_error_message(self, values):
-        if values != "RUNAJIX":
+    @staticmethod
+    def error_message(player: Player, values):
+        solutions = dict(captcha1='RUNAJIX')
+        errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
+        if errors:
             self.player.incorrect_attempts_captcha1 += 1
-            return '''Please type the characters correctly, case sensitive'''
+            if player.incorrect_attempts_captcha1 >= 3:
+                player.participant.vars['boot'] = True
+            else:
+                return errors
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
