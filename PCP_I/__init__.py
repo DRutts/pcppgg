@@ -109,14 +109,11 @@ class Captcha1(Page):
     form_fields = ['captcha1']   
     timeout_seconds = 90
 
-    def captcha1_error_message(player: Player, values):
+    def captcha1_error_message(self, values):
         if values != "RUNAJIX":
-            player.incorrect_attempts_captcha1 += 1
-            if player.incorrect_attempts_captcha1 >= 3:
-                player.failed_too_many = True
-                player.participant.vars['boot'] = True
+            self.player.incorrect_attempts_captcha1 += 1
             return '''Please type the characters correctly, case sensitive'''
-            
+
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca1 = True
@@ -135,12 +132,9 @@ class Captcha2(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
-    def captcha2_error_message(player: Player, values):
+    def captcha2_error_message(self, values):
         if str(values).lower() not in ["eps10 vector", 'eps10 vect0r', "epsio vector", "epsio vect0r", 'eps1o vector', 'eps1o vect0r']:
-            player.incorrect_attempts_captcha2 += 1
-            if player.incorrect_attempts_captcha2 >= 3:
-                player.failed_too_many = True
-                player.participant.vars['boot'] = True
+            self.player.incorrect_attempts_captcha2 += 1
             return '''Please type the characters correctly, including any numbers, letters, and spaces. Case insensitive'''
 
     def before_next_page(player, timeout_happened):
