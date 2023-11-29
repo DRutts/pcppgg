@@ -47,8 +47,7 @@ class Player(BasePlayer):
     incomplete = models.IntegerField(initial = 0)
 
     def waiting_too_long(player):
-        participant = player.participant
-        return time.time() - participant.wait_page_arrival > 30*60
+        return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
 
 
 

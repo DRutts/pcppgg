@@ -216,6 +216,7 @@ class Instructions2(Page):
                 return errors
     
     def before_next_page(player: Player, timeout_happened):
+        player.participant.vars['wait_arrival_time'] = time.time()
         if player.failed_too_many == True:
             player.participant.vars['boot'] = True
         else: 
