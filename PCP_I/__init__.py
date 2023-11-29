@@ -114,7 +114,7 @@ class Captcha1(Page):
         solutions = dict(captcha1='RUNAJIX')
         errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
         if errors:
-            self.player.incorrect_attempts_captcha1 += 1
+            player.incorrect_attempts_captcha1 += 1
             if player.incorrect_attempts_captcha1 >= 3:
                 player.participant.vars['boot'] = True
             else:
