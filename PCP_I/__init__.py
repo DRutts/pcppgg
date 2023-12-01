@@ -34,7 +34,6 @@ class Player(BasePlayer):
     captcha2 = models.StringField(max_length = 200)
     incorrect_attempts_captcha1 = models.IntegerField(initial = 0)
     incorrect_attempts_captcha2 = models.IntegerField(initial = 0)
-    failed_too_many_captcha = models.BooleanField(initial = False)
     TimeoutCapthca1 = models.BooleanField(initial = False)
     TimeoutCapthca2 = models.BooleanField(initial = False)
 
@@ -182,7 +181,7 @@ class Instructions1(Page):
         errors = {name: 'Wrong' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.num_failed_attempts_1 += 1
-            if player.num_failed_attempts_1 >= 3:
+            if player.num_failed_attempts_1 >= 10:
                 player.failed_too_many = True
                 
             else:
@@ -211,8 +210,8 @@ class Instructions2(Page):
         errors = {name: 'Wrong' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.num_failed_attempts_2 += 1
-            if player.num_failed_attempts_2 >= 3:
-                player.failed_too_many = True
+            if player.num_failed_attempts_2 >= 10:
+                player.participant.vars['boot'] = True
             else:
                 return errors
     
