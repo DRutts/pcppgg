@@ -38,7 +38,7 @@ class Player(BasePlayer):
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
-    ContributionPercentage = models.IntegerField()
+    ContributionPercentage = models.FloatField()
     RetainedEndowment = models.IntegerField()
     PreliminaryPayoff = models.FloatField()
     PunishmentTo1 = make_punishment_field(1)
