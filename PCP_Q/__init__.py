@@ -62,13 +62,13 @@ class Player(BasePlayer):
         label='8) Are you a member of any voluntary associations (political groups, interest groups, cultural groups, sports, nonprofits, etc.)'
     )
     QQ9a = models.IntegerField(
-        min=1, max=9, label='9a) Claiming government benefits to which you are not entitled'
+        min=1, max=9, label='a) Claiming government benefits to which you are not entitled'
     )
     QQ9b = models.IntegerField(
-        min=1, max=9, label='9b) Avoiding a fare on public transportation'
+        min=1, max=9, label='b) Avoiding a fare on public transportation'
     )
     QQ9c = models.IntegerField(
-        min=1, max=9, label='9c) Cheating on taxes if you have a chance'
+        min=1, max=9, label='c) Cheating on taxes if you have a chance'
     )
 
 
@@ -89,10 +89,19 @@ class Player(BasePlayer):
 
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = ['QQ1', 'QQ2', 'QQ3', 'QQ4', 'QQ5', 'QQ6', 'QQ7', 'QQ8', 'QQ9a', 'QQ9b', 'QQ9c']
+    form_fields = ['QQ1', 'QQ2', 'QQ3', 'QQ4', 'QQ5', 'QQ6', 'QQ7', 'QQ8']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
+    
+    class Questionnaire2(Page):
+    form_model = 'player'
+    form_fields = ['QQ9a', 'QQ9b', 'QQ9c']
 
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
-page_sequence = [Questionnaire]
+page_sequence = [Questionnaire,
+                 Questionnaire2]
