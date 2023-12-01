@@ -44,6 +44,7 @@ class Player(BasePlayer):
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
     incomplete = models.IntegerField(initial = 0)
+    PreliminaryPayoff = models.FloatField()
 
     def waiting_too_long(player):
         return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
