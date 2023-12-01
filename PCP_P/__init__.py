@@ -48,7 +48,7 @@ class Player(BasePlayer):
     TotalPunishmentsFrom = models.IntegerField()
     TotalPunishmentsTo = models.IntegerField()
     PayoffReduction = models.IntegerField()
-    RevisedPayoff = models.FloatField()
+    RevivsedPayoff = models.FloatField()
     
 
 
@@ -85,7 +85,7 @@ def SetRevisedPayoffs(group: Group):
         punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
         p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
-        p.RevisedPayoff = max(p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction, 0)
+        p.RevivsedPayoff = max(p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction, 0)
 
 
 
