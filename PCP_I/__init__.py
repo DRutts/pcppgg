@@ -59,7 +59,7 @@ class Player(BasePlayer):
         label = "a) What is your income if you contribute 0 tokens to the project?"
     )
     Q3b = models.IntegerField(
-        label = "b) What is your income if you contribute 0 tokens to the project?"
+        label = "b) What is your income if you contribute 15 tokens to the project?"
     )
     Q4a = models.IntegerField(
         label = "a) What is your income if the other group members together contribute a total of 7 tokens to the project?"
