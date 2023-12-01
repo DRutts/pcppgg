@@ -38,6 +38,7 @@ class Player(BasePlayer):
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
+    ContributionPercentage = models.IntegerField()
     RetainedEndowment = models.IntegerField()
     PreliminaryPayoff = models.FloatField()
     PunishmentTo1 = make_punishment_field(1)
@@ -70,6 +71,7 @@ def SetPrelimPayoffs(group: Group):
 
     for p in players:
         PID = GetPID(p) 
+        p.ContributionPercentage = P.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.PGEarnings
 
