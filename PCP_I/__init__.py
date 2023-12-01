@@ -115,7 +115,6 @@ class Captcha1(Page):
         errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.incorrect_attempts_captcha1 += 1
-        else:
             return errors
 
     def before_next_page(player, timeout_happened):
@@ -144,7 +143,6 @@ class Captcha2(Page):
         errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. Use lowercase.''' for name in solutions if values[name] not in solutions[name]}
         if errors:
             player.incorrect_attempts_captcha2 += 1
-        else:
             return errors
 
     def before_next_page(player, timeout_happened):
