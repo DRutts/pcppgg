@@ -69,6 +69,8 @@ def SetPrelimPayoffs(group: Group):
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
 
     for p in players:
+        PID = GetPID(p) 
+        p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.PGEarnings
 
 
