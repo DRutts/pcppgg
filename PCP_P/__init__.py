@@ -174,4 +174,4 @@ page_sequence = [ContributionPage,
                  PreliminaryResults,
                  PunishmentPage, 
                  PunishmentWaitPage, 
-                 RevisedResultsPage]
+                 RevisedResults]
