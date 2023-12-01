@@ -171,7 +171,7 @@ class RevisedResults(Page):
 
 page_sequence = [ContributionPage, 
                  ResultsWaitPage, 
-                 PreliminaryResultsPage,
+                 PreliminaryResults,
                  PunishmentPage, 
                  PunishmentWaitPage, 
                  RevisedResultsPage]
