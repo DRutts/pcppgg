@@ -31,17 +31,22 @@ class Group(BaseGroup):
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
-            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
+            min=0, max= max(C.MAX_PUNISHMENT, player.PreliminaryPayoff), label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
+    PreliminaryPayoff = models.FloatField()
     PunishmentTo1 = make_punishment_field(1)
     PunishmentTo2 = make_punishment_field(2)
     PunishmentTo3 = make_punishment_field(3)
     PunishmentTo4 = make_punishment_field(4)
+    TotalPunishmentsFrom = models.IntegerField()
+    TotalPunishmentsTo = models.IntegerField()
+    PayoffReduction = models.IntegerField()
+    RevivsedPayoff = models.FloatField()
     
 
 
