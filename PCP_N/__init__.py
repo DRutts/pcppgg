@@ -43,6 +43,7 @@ class Player(BasePlayer):
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
+    RetainedEndowment = models.IntegerField()
     incomplete = models.IntegerField(initial = 0)
     PreliminaryPayoff = models.FloatField()
 
