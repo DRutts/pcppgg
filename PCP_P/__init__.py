@@ -48,7 +48,7 @@ class Player(BasePlayer):
     TotalPunishmentsFrom = models.IntegerField()
     TotalPunishmentsTo = models.IntegerField()
     PayoffReduction = models.IntegerField()
-    RevivsedPayoff = models.FloatField()
+    RevisedPayoff = models.FloatField()
     
 
 
