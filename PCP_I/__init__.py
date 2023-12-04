@@ -126,6 +126,7 @@ class Consent(Page):
         if not value:
             return 'You must accept the consent form in order to proceed with the study!'
 
+
 class Captcha1(Page):
     form_model = 'player'
     form_fields = ['captcha1']   
