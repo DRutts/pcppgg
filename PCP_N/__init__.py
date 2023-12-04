@@ -120,11 +120,21 @@ class PreliminaryResults(Page):
 
     timeout_seconds = 30
 
+class InformationScreen(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
+    timeout_seconds = 30
 
+    def vars_for_template(player: Player):
+        return dict(
+            other_players=player.get_others_in_group(), contributions = [p.Contribution for p in player.get_players_in_group()],
+        )
 
 
 page_sequence = [ShuffleWaitPage,
                  ContributionPage, 
                  ResultsWaitPage, 
                  PreliminaryResults,
-                 ]
+                 InformationScreen
+                ]
