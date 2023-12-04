@@ -2,7 +2,71 @@
     Instructions - Second Experiment
 {{ endblock }}
 {{ block content }}
+    <h1>General Explanation of the Second Experiment</h1>
+    <p>
+        We then repeat the experiment and introduce some changes. 
+    </p>
+    <p>
+        Each participant receives a lump-sum payment of 25 Guilders at the beginning of the experiment (in addition to the show-up fee). This payment can be used to pay for eventual losses during the experiment. However, you can always avoid losses with certainty through your own decisions. At the end of the subsequent ten periods the whole experiment is finished and you receive: 
+    </p>
+    <p>
+        Your income from the first 10 periods + your income from the second 10 periods (including the lump-sum payment of 25 Guilders) = Total sum of Guilders + show-up fee. 
 
+    </p>
+    <p>
+        This experiment consists of two stages in each period and altogether there are 10 periods. The first stage is identical to the previous experiment. At the first stage you have to decide how many tokens out of 20 you would like to contribute to a project (and hence you decide with it how many tokens you keep for yourself). Your income from the first stage will be calculated exactly in the same way as in the previous experiment. 
+    </p>
+    <p>
+        For each token you keep for yourself, you earn an income of 1 Guilder. For any token you contribute to the project, you and all other group members will earn 0.4 Guilders. Therefore, each token that another group member contributes to the project will increase your income by 0.4 Guilders. 
+    </p>
+    <h1>What is Different in this Experiment?</h1>
+    <p>
+        Now there is a second stage introduced that follows the display of the income screen at the end of the first stage. 
+    </p>
+    <h1>The Second Stage</h1>
+    <p>
+        At the second stage you see how many tokens each of the other group members contributed to the project. In addition, in this stage you can decrease the income of each other group member by assigning deduction points or by leaving the income unchanged. The other group members can also decrease your income if they wish to. This is apparent from the input screen at the second stage: 
+    </p>
+    <p>
+        Besides the period and time display, the screen shows how much each group member contributed to the project at the first stage. Your contribution is displayed in the first row, while the contributions made by the other group members are shown in the remaining three rows. Please note that the order in which contributions are displayed changes randomly in every period. The contribution in the second row, for example, generally represents a different group member each time. The same holds true for the contributions in the other rows. That way you are informed about the contributions but not about the identities of the other group members. In addition to the absolute contributions, the contribution as a percentage of the endowment is displayed. 
+    </p>
+    <p>
+        You now have to decide whether, and if so, how many deduction points to assign to each of the other three group members. In any case you must enter a number for each of them. If you do not wish to change the income of a specific group member then you must enter 0. If you want to distribute deduction points, you must put a negative sign in front of the number (without spaces between them). 
+    </p>
+    <p>
+        For this decision you have 180 seconds in the first two periods and 120 seconds in the remaining periods. You can move from one input field to the other by pressing the tab -key (→|) or by using the mouse. 
+    </p>
+    <p>
+        If you distribute deduction points, you have costs in Guilders that depend on the amount of deduction points you distribute. You can assign between -10 and 0 points to each group member. The larger the amount of deduction points that you assign, the larger your costs. The following formula indicates the relationship between the number of assigned points and the costs of assigning points: 
+    </p>
+    <p>
+        Costs of assigning deduction points = Sum of assigned deduction points. 
+    </p>
+    <p>
+        Every assigned deduction point costs you 1 Guilder. For example, if you assign 2 deduction points to one member, this costs you 2 Guilders; if, in addition, you assign 9 deduction points to another member this costs you 9 Guilders; and if you assign 0 points to the last group member this has no cost for you. In total you have assigned 11 points and your total costs therefore amount to 11 Guilders (2+9+0). 
+    </p>
+    <p>
+        If you assign 0 points to a particular group member (i.e., enter “0”), you will not alter his or her income. How- ever, if you assign one deduction point to a group member (i.e., enter “–1”) you will decrease the income of this group member by 3 Guilders. If you assign a group member 2 deduction points (i.e., enter “–2”), you will de- crease the group member’s income by 6 Guilders, and so on. Each deduction point that you assign to another group member will reduce his or her income by 3 Guilders. 
+    </p>
+    <p>
+        Whether or by how much the income at the second stage is decreased in total depends on the total of the received deduction points. If somebody, for instance, receives a total of 3 deduction points (from all other group members in this period), his or her income would be decreased by 9 Guilders. If somebody receives a total of 4 deduction points, his or her income is reduced by 12 Guilders. Your total income from the two stages is therefore calculated as follows: 
+    </p>
+    <p>
+        Total income (in Guilders) at the end of the second stage = period income 
+        <ul>
+            <li>= income from the first stage (1) – 3*(sum of received deduction points) (2) – costs of deduction points you have assigned if (1) + (2) is larger or equal to 0</li>
+            <li>
+                0 – costs of deduction points you have assigned if (1) + (2) is less than 0 
+            </li>
+        </ul>
+    </p>
+    <p>
+        Please note that your income in Guilders at the end of the second stage can be negative if the costs of your as- signed points exceed your income from the first stage minus the income reduction by the received deduction points. You can, however, avoid such losses with certainty through your own decisions! 
+    </p>
+    <p>
+        After all participants have made their decision, your income from the period will be displayed on the following screen: 
+    </p>
+    <h1>Control Questions</h1>
     {% formfield player.Q5 %}
     {% formfield player.Q6 %}
     {% formfield player.Q7 %}
