@@ -16,7 +16,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 10
     ENDOWMENT = 25
     PUNISHMENT_MULTIPLIER = 3
-    MAX_PUNISHMENT = 10
+    MAX_PUNISHMENT = -10
     
 
 
@@ -31,7 +31,7 @@ class Group(BaseGroup):
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
-            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
+            min=C.MAX_PUNISHMENT, max=0, label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
@@ -81,11 +81,11 @@ def SetRevisedPayoffs(group: Group):
     for p in players:
         PID = GetPID(p)   
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
-        p.TotalPunishmentsTo = sum(punishments_received)
+        p.TotalPunishmentsTo = -1*sum(punishments_received)
         punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
-        p.TotalPunishmentsFrom = sum(punishments_sent)
+        p.TotalPunishmentsFrom = -1*sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
-        p.RevisedPayoff = max(p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction, 0)
+        p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
 
 
 
