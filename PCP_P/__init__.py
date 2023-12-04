@@ -10,7 +10,7 @@ Your app description
 # ======================
 
 class C(BaseConstants):
-    NAME_IN_URL = 'PCP.P'
+    NAME_IN_URL = 'PCP_P'
     MULTIPLIER = 1.6
     PLAYERS_PER_GROUP = 4
     NUM_ROUNDS = 10
