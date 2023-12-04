@@ -33,7 +33,6 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
 
