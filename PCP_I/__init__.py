@@ -1,5 +1,4 @@
 from otree.api import (
-
     models,
     widgets,
     BaseConstants,
@@ -12,7 +11,7 @@ from otree.api import (
 
 import time
 
-from django.forms.widgets import CheckboxSelectMultiple
+
 doc = """
 Your app description
 """
@@ -36,9 +35,11 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    consent = models.BooleanField(widget=djforms.CheckboxInput,
-                                  initial=False
-                                  )
+    consent = models.FloatField(
+            choices=[[1, 'Yes']],
+            label = '',
+            widget=widgets.RadioSelect
+        )
 
     incorrect_attempts1= models.IntegerField(initial = 0)
     bot_num = models.IntegerField(initial = 0)
