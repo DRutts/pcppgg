@@ -1,13 +1,4 @@
-from otree.api import (
-    models,
-    widgets,
-    BaseConstants,
-    BaseSubsession,
-    BaseGroup,
-    BasePlayer,
-    Currency as c,
-    currency_range,
-)
+from otree.api import*
 
 import time
 
@@ -123,8 +114,10 @@ class Consent(Page):
 
     @staticmethod
     def consent_error_message(player: Player, value):
-        if not value:
-            return 'You must accept the consent form in order to proceed with the study!'
+        solutions = dict(consent='Yes')
+        errors = {name: '''You must accept the consent form to proceed with the study''' for name in solutions if values[name] != solutions[name]}
+        if errors:
+            return errors
 
 
 class Captcha1(Page):
