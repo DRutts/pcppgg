@@ -125,18 +125,19 @@ class ResultsWaitPage(WaitPage):
 
 
 class PreliminaryResults(Page):
+    timeout_seconds = 45
     @staticmethod
-
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
-    timeout_seconds = 45
+    
 
 class InformationScreen(Page):
+    timeout_seconds = 45
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
-    timeout_seconds = 45
+    
 
     def vars_for_template(player: Player):
         return dict(
