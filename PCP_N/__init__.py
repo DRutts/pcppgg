@@ -15,6 +15,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = 4
     NUM_ROUNDS = 10
     ENDOWMENT = 20
+    PUNISHMENT_MULTIPLIER = 3
     MAX_PUNISHMENT = -10
 
 
