@@ -1,5 +1,5 @@
 from otree.api import (
-    time,
+
     models,
     widgets,
     BaseConstants,
@@ -9,7 +9,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+import time
 
 from django import forms as djforms
 doc = """
