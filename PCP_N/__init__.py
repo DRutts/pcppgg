@@ -15,8 +15,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = 4
     NUM_ROUNDS = 10
     ENDOWMENT = 20
-    PUNISHMENT_MULTIPLIER = 3
-    MAX_PUNISHMENT = -10
+
 
 
     
@@ -38,10 +37,7 @@ class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
 
-def make_punishment_field(id_in_group):
-        return models.IntegerField(
-            min=C.MAX_PUNISHMENT, max=0, label="Deduction assigned to Player {}".format(id_in_group)
-        )
+
 
 class Player(BasePlayer):
     PID = models.IntegerField()
@@ -52,14 +48,7 @@ class Player(BasePlayer):
     incomplete = models.IntegerField(initial = 0)
     PreliminaryPayoff = models.FloatField()
     ContributionPercentage = models.FloatField()
-    PunishmentTo1 = make_punishment_field(1)
-    PunishmentTo2 = make_punishment_field(2)
-    PunishmentTo3 = make_punishment_field(3)
-    PunishmentTo4 = make_punishment_field(4)
-    TotalPunishmentsFrom = models.IntegerField()
-    TotalPunishmentsTo = models.IntegerField()
-    PayoffReduction = models.IntegerField()
-    RevisedPayoff = models.FloatField()
+
 
     def waiting_too_long(player):
         return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
@@ -74,8 +63,7 @@ class Player(BasePlayer):
 def GetPID(player: Player):
     return 'PunishmentTo{}'.format(player.id_in_group)
 
-def Punishment_Fields(player: Player):
-    return ['PunishmentTo{}'.format(p.id_in_group) for p in player.get_others_in_group()]
+
 
 def SetPrelimPayoffs(group: Group):
     players = group.get_players()
@@ -90,16 +78,7 @@ def SetPrelimPayoffs(group: Group):
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.PGEarnings
 
 
-def SetRevisedPayoffs(group: Group):
-    players = group.get_players()
-    for p in players:
-        PID = GetPID(p)   
-        punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
-        p.TotalPunishmentsTo = -1*sum(punishments_received)
-        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
-        p.TotalPunishmentsFrom = -1*sum(punishments_sent)
-        p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
-        p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
+
 
 
 # ======================
