@@ -114,6 +114,7 @@ class Player(BasePlayer):
 # ======================
 #       PAGE PART
 # ======================
+
 class Consent(Page):
     form_model = 'player'
     form_fields = ['consent']
