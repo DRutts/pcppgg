@@ -35,6 +35,7 @@ def make_punishment_field(id_in_group):
         )
 
 class Player(BasePlayer):
+    PID = models.IntegerField()
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
