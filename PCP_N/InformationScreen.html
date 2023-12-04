@@ -1,0 +1,37 @@
+{{ block title }}Information Screen{{ endblock }}
+{{ block content }}
+
+    <p>
+        You contributed {{ player.contribution }}.
+        Here are the other players' contributions:
+    </p>
+    <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Endowment</th>
+            <th>Contribution</th>
+            <th>Contribution in percentage of the endowment</th>
+
+        </tr>
+        <tr>
+            <tr>You</tr>
+            <td>{{ C.ENDOWMENT }}</td>
+            <td>{{ player.Contribution }}</td>
+            <td>{{ player.ContributionPercentage }}</td>
+
+        </tr>
+        {{ for p in other_players }}
+            <tr>
+                <tr> Player {{ p }}</tr>
+                <td>{{ C.ENDOWMENT }}</td>
+                <td>{{ player.Contribution }}</td>
+                <td>{{ player.contribution }}</td>
+            </tr>
+        {{ endfor }}
+    </table>
+
+
+
+    {{ next_button }}
+
+{{ endblock }}
