@@ -92,7 +92,7 @@ class ShuffleWaitPage(WaitPage):
 class ContributionPage(Page):
     form_model = "player"
     form_fields = ["Contribution"]
-    timeout_seconds = 60
+    timeout_seconds = 90
 
     @staticmethod
 
@@ -120,13 +120,13 @@ class PreliminaryResults(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
-    timeout_seconds = 30
+    timeout_seconds = 45
 
 class InformationScreen(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
-    timeout_seconds = 30
+    timeout_seconds = 45
 
     def vars_for_template(player: Player):
         return dict(
