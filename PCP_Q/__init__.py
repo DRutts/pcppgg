@@ -95,7 +95,7 @@ class Questionnaire(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
     
-    class Questionnaire2(Page):
+class Questionnaire2(Page):
     form_model = 'player'
     form_fields = ['QQ9a', 'QQ9b', 'QQ9c']
 
