@@ -86,7 +86,6 @@ def GetPID(player: Player):
 def Punishment_Fields(player: Player):
     return ['PunishmentTo{}'.format(p.id_in_group) for p in player.get_others_in_group()]
 
-
 def SetPrelimPayoffs(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
@@ -94,11 +93,22 @@ def SetPrelimPayoffs(group: Group):
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
 
     for p in players:
-        PID = GetPID(p)  
+        PID = GetPID(p) 
+        p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.PGEarnings
 
 
+def SetRevisedPayoffs(group: Group):
+    players = group.get_players()
+    for p in players:
+        PID = GetPID(p)   
+        punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
+        p.TotalPunishmentsTo = -1*sum(punishments_received)
+        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
+        p.TotalPunishmentsFrom = -1*sum(punishments_sent)
+        p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
+        p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
 
 
 # ======================
