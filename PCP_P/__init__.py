@@ -128,7 +128,7 @@ class PreliminaryResults(Page):
         return player.participant.vars['boot'] == False
     timeout_seconds = 30
 
-class InformationPage(Page):
+class InformationScreen(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
@@ -182,6 +182,7 @@ page_sequence = [ShuffleWaitPage,
                  ContributionPage, 
                  ResultsWaitPage, 
                  PreliminaryResults,
+                 InformationScreen,
                  PunishmentPage, 
                  PunishmentWaitPage, 
                  RevisedResults]
