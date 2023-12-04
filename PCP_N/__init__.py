@@ -46,6 +46,8 @@ class Player(BasePlayer):
     RetainedEndowment = models.IntegerField()
     incomplete = models.IntegerField(initial = 0)
     PreliminaryPayoff = models.FloatField()
+    ContributionPercentage = models.FloatField()
+
 
     def waiting_too_long(player):
         return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
