@@ -62,16 +62,16 @@ class Player(BasePlayer):
     def waiting_too_long(player):
         return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
 
-  def SetRevisedPayoffs(group: Group):
-    players = group.get_players()
-    for p in players:
-        PID = GetPID(p)   
-        punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
-        p.TotalPunishmentsTo = -1*sum(punishments_received)
-        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
-        p.TotalPunishmentsFrom = -1*sum(punishments_sent)
-        p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
-        p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction  
+    def SetRevisedPayoffs(group: Group):
+        players = group.get_players()
+        for p in players:
+            PID = GetPID(p)   
+            punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
+            p.TotalPunishmentsTo = -1*sum(punishments_received)
+            punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
+            p.TotalPunishmentsFrom = -1*sum(punishments_sent)
+            p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
+            p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction  
 
 
 
