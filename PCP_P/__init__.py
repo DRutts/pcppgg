@@ -138,7 +138,7 @@ class InformationScreen(Page):
 
     def vars_for_template(player: Player):
         return dict(
-            other_players=player.get_others_in_group(), contributions = [p.Contribution for p in player.get_players_in_group()],
+            other_players=player.get_others_in_group(),
         )
     
 
@@ -153,7 +153,7 @@ class PunishmentPage(Page):
     
     def vars_for_template(player: Player):
         return dict(
-            other_players=player.get_others_in_group(), multiplier = C.PUNISHMENT_MULTIPLIER,
+            other_players=player.get_others_in_group(),
         )
 
     def before_next_page(player, timeout_happened):
