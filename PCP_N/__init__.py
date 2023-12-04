@@ -47,10 +47,20 @@ class Player(BasePlayer):
     incomplete = models.IntegerField(initial = 0)
     PreliminaryPayoff = models.FloatField()
     ContributionPercentage = models.FloatField()
+    PunishmentTo1 = make_punishment_field(1)
+    PunishmentTo2 = make_punishment_field(2)
+    PunishmentTo3 = make_punishment_field(3)
+    PunishmentTo4 = make_punishment_field(4)
+    TotalPunishmentsFrom = models.IntegerField()
+    TotalPunishmentsTo = models.IntegerField()
+    PayoffReduction = models.IntegerField()
+    RevisedPayoff = models.FloatField()
 
 
     def waiting_too_long(player):
         return time.time() - player.participant.vars['wait_arrival_time'] > 30*60
+
+    
 
 
 
