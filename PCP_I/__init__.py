@@ -1,7 +1,17 @@
-from otree.api import *
-import time
+from otree.api import (
+    time,
+    models,
+    widgets,
+    BaseConstants,
+    BaseSubsession,
+    BaseGroup,
+    BasePlayer,
+    Currency as c,
+    currency_range,
+)
 
 
+from django import forms as djforms
 doc = """
 Your app description
 """
@@ -25,7 +35,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
+    consent = models.BooleanField(widget=djforms.CheckboxInput,
+                                  initial=False
+                                  )
 
     incorrect_attempts1= models.IntegerField(initial = 0)
     bot_num = models.IntegerField(initial = 0)
@@ -102,7 +114,14 @@ class Player(BasePlayer):
 # ======================
 #       PAGE PART
 # ======================
+class Consent(Page):
+    form_model = 'player'
+    form_fields = ['consent']
 
+    @staticmethod
+    def consent_error_message(player: Player, value):
+        if not value:
+            return 'You must accept the consent form in order to proceed with the study!'
 
 class Captcha1(Page):
     form_model = 'player'
@@ -224,7 +243,8 @@ class Elimination(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == True
 
-page_sequence = [Captcha1,
+page_sequence = [Consent,
+                 Captcha1,
                  Captcha2,
                  Instructions1, 
                  Instructions2,
