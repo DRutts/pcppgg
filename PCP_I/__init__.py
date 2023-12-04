@@ -9,9 +9,10 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
+
 import time
 
-from django import forms as djforms
+from django.forms.widgets import CheckboxSelectMultiple
 doc = """
 Your app description
 """
