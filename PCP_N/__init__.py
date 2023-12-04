@@ -130,7 +130,6 @@ class InformationScreen(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
-    
 
     def vars_for_template(player: Player):
         return dict(
