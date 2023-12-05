@@ -142,7 +142,7 @@ class Captcha1(Page):
             player.keep = 1
         else: 
             player.TimeoutCapthca1 = False
-            player.keep = 0
+            
 
 
 class Captcha2(Page):
@@ -171,7 +171,7 @@ class Captcha2(Page):
             player.keep = 1
         else: 
             player.TimeoutCapthca2 = False
-            player.keep = 0
+            
 
 
 class Instructions1(Page):
