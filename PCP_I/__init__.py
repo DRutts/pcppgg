@@ -197,16 +197,10 @@ class Instructions1(Page):
         if errors:
             player.num_failed_attempts_1 += 1
             if player.num_failed_attempts_1 >= 10:
-                player.failed_too_many = True
-                
+                player.remove = True
             else:
                 return errors
 
-    def before_next_page(player: Player, timeout_happened):
-        if player.failed_too_many == True:
-            player.participant.vars['boot'] = True
-        else: 
-            player.participant.vars['boot'] = False
     
     
 class Instructions2(Page):
@@ -226,13 +220,13 @@ class Instructions2(Page):
         if errors:
             player.num_failed_attempts_2 += 1
             if player.num_failed_attempts_2 >= 10:
-                player.participant.vars['boot'] = True
+                player.remove = True
             else:
                 return errors
     
-    def before_next_page(player: Player, timeout_happened):
+    def before_next_page(player: Player):
         player.participant.vars['wait_arrival_time'] = time.time()
-        if player.failed_too_many == True:
+        if player.remove == True:
             player.participant.vars['boot'] = True
         else: 
             player.participant.vars['boot'] = False
