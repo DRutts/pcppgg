@@ -142,7 +142,7 @@ class Captcha1(Page):
             player.remove = True
         else: 
             player.TimeoutCapthca1 = False
-
+            player.remove = False
 
 
 class Captcha2(Page):
@@ -152,7 +152,7 @@ class Captcha2(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.remove == False
 
     @staticmethod
     def error_message(player: Player, values):
@@ -160,17 +160,18 @@ class Captcha2(Page):
         errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. Use lowercase.''' for name in solutions if values[name] not in solutions[name]}
         if errors:
             player.incorrect_attempts_captcha2 += 1
-            return errors
+            if player.incorrect_attempts_captcha2 >= 3:
+                player.remove = True
+            else:
+                return errors
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca2 = True
-            player.participant.vars['boot'] = True
-        if player.incorrect_attempts_captcha2 >= 3:
-                player.participant.vars['boot'] = True
+            player.remove = True
         else: 
             player.TimeoutCapthca2 = False
-            player.participant.vars['boot'] = False
+            player.remove = False
 
 
 class Instructions1(Page):
@@ -180,7 +181,7 @@ class Instructions1(Page):
     
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.remove == False
 
     @staticmethod
     def error_message(player: Player, values):
@@ -211,7 +212,7 @@ class Instructions1(Page):
 class Instructions2(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.remove == False
     form_model = "player"
     form_fields = ["Q5", "Q6", "Q7", "Q8", "Q9"]
     @staticmethod
@@ -239,7 +240,7 @@ class Instructions2(Page):
 class Elimination(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == True
+        return player.remove == True
 
 page_sequence = [Consent,
                  Captcha1,
