@@ -27,7 +27,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     consent = models.FloatField(
-            choices=[[1, 'Yes']],
+            choices=[[1, 'I consent']],
             label = '',
             widget=widgets.RadioSelect
         )
@@ -114,7 +114,7 @@ class Consent(Page):
 
     @staticmethod
     def consent_error_message(player: Player, value):
-        solutions = dict(consent='Yes')
+        solutions = dict(consent='I consent')
         errors = {name: '''You must accept the consent form to proceed with the study''' for name in solutions if values[name] != solutions[name]}
         if errors:
             return errors
