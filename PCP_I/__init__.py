@@ -31,8 +31,8 @@ class Player(BasePlayer):
             label = '',
             widget=widgets.RadioSelect
         )
-
-    incorrect_attempts1= models.IntegerField(initial = 0)
+    remove = models.BooleanField(initial = False)
+    incorrect_attempts1 = models.IntegerField(initial = 0)
     bot_num = models.IntegerField(initial = 0)
 
     captcha1 = models.StringField(max_length = 200)
@@ -131,17 +131,18 @@ class Captcha1(Page):
         errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.incorrect_attempts_captcha1 += 1
-            return errors
+            if player.incorrect_attempts_captcha1 >= 3
+                player.remove = True
+            else:
+                return errors
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca1 = True
-            player.participant.vars['boot'] = True
-        if player.incorrect_attempts_captcha1 >= 3:
-                player.participant.vars['boot'] = True
+            player.remove = True = True
         else: 
             player.TimeoutCapthca1 = False
-            player.participant.vars['boot'] = False
+
 
 
 class Captcha2(Page):
