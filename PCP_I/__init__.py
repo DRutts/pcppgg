@@ -131,7 +131,7 @@ class Captcha1(Page):
         errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.incorrect_attempts_captcha1 += 1
-            if player.incorrect_attempts_captcha1 >= 3
+            if player.incorrect_attempts_captcha1 >= 3:
                 player.remove = True
             else:
                 return errors
