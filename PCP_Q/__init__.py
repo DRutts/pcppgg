@@ -25,7 +25,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     QQ1 = models.IntegerField(
-        label='1) What is your age?'
+        min=0, label='1) What is your age?'
     )
     QQ2 = models.StringField(
         label='2) What is your gender?',
@@ -38,7 +38,7 @@ class Player(BasePlayer):
         label='3) Were you born in your current country of residence?'
     )
     QQ4 = models.IntegerField(
-        label='4) How long have you lived in your current country of residence?'
+        min=0, label='4) How many years have you lived in your current country of residence?'
     )
     QQ5 = models.StringField(
         label='5) What is the size of the city in which you have spent most of your life?',
@@ -56,19 +56,19 @@ class Player(BasePlayer):
                  [4, 'Above avrage']]
     )
     QQ7 = models.IntegerField(
-        label='7) How many siblings do you have?'
+        min=0, label='7) How many siblings do you have?'
     )
     QQ8 = models.BooleanField(
         label='8) Are you a member of any voluntary associations (political groups, interest groups, cultural groups, sports, nonprofits, etc.)'
     )
     QQ9a = models.IntegerField(
-        min=1, max=9, label='a) Claiming government benefits to which you are not entitled'
+        min=1, max=10, label='a) Claiming government benefits to which you are not entitled'
     )
     QQ9b = models.IntegerField(
-        min=1, max=9, label='b) Avoiding a fare on public transportation'
+        min=1, max=10, label='b) Avoiding a fare on public transportation'
     )
     QQ9c = models.IntegerField(
-        min=1, max=9, label='c) Cheating on taxes if you have a chance'
+        min=1, max=10, label='c) Cheating on taxes if you have a chance'
     )
 
 
