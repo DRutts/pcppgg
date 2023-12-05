@@ -104,4 +104,5 @@ class Questionnaire2(Page):
         return player.participant.vars['boot'] == False
 
 page_sequence = [Questionnaire,
-                 Questionnaire2]
+                 Questionnaire2,
+                 Completion]
