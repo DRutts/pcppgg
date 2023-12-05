@@ -139,7 +139,7 @@ class Captcha1(Page):
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca1 = True
-            player.remove = True = True
+            player.remove = True
         else: 
             player.TimeoutCapthca1 = False
 
