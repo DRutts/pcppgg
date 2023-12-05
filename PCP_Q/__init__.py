@@ -103,6 +103,12 @@ class Questionnaire2(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
+class Completion(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False
+    
+
 page_sequence = [Questionnaire,
                  Questionnaire2,
                  Completion]
