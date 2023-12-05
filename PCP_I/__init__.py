@@ -31,7 +31,7 @@ class Player(BasePlayer):
             label = '',
             widget=widgets.RadioSelect
         )
-    remove = models.BooleanField(initial = False)
+    keep = models.IntegerField(initial = 0)
     incorrect_attempts1 = models.IntegerField(initial = 0)
     bot_num = models.IntegerField(initial = 0)
 
@@ -132,17 +132,17 @@ class Captcha1(Page):
         if errors:
             player.incorrect_attempts_captcha1 += 1
             if player.incorrect_attempts_captcha1 >= 3:
-                player.remove = True
+                player.keep = 1
             else:
                 return errors
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca1 = True
-            player.remove = True
+            player.keep = 1
         else: 
             player.TimeoutCapthca1 = False
-            player.remove = False
+            player.keep = 0
 
 
 class Captcha2(Page):
@@ -152,7 +152,7 @@ class Captcha2(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.remove == False
+        return player.keep == 0
 
     @staticmethod
     def error_message(player: Player, values):
@@ -161,17 +161,17 @@ class Captcha2(Page):
         if errors:
             player.incorrect_attempts_captcha2 += 1
             if player.incorrect_attempts_captcha2 >= 3:
-                player.remove = True
+                player.keep = 1
             else:
                 return errors
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca2 = True
-            player.remove = True
+            player.keep = 1
         else: 
             player.TimeoutCapthca2 = False
-            player.remove = False
+            player.keep = 0
 
 
 class Instructions1(Page):
@@ -181,7 +181,7 @@ class Instructions1(Page):
     
     @staticmethod
     def is_displayed(player: Player):
-        return player.remove == False
+        return player.keep == 0
 
     @staticmethod
     def error_message(player: Player, values):
@@ -197,7 +197,7 @@ class Instructions1(Page):
         if errors:
             player.num_failed_attempts_1 += 1
             if player.num_failed_attempts_1 >= 10:
-                player.remove = True
+                player.keep = 1
             else:
                 return errors
 
@@ -206,7 +206,7 @@ class Instructions1(Page):
 class Instructions2(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.remove == False
+        return player.keep == 0
     form_model = "player"
     form_fields = ["Q5", "Q6", "Q7", "Q8", "Q9"]
     @staticmethod
@@ -220,13 +220,13 @@ class Instructions2(Page):
         if errors:
             player.num_failed_attempts_2 += 1
             if player.num_failed_attempts_2 >= 10:
-                player.remove = True
+                player.keep = 1
             else:
                 return errors
     
     def before_next_page(player: Player):
         player.participant.vars['wait_arrival_time'] = time.time()
-        if player.remove == True:
+        if player.keep == 1:
             player.participant.vars['boot'] = True
         else: 
             player.participant.vars['boot'] = False
@@ -234,7 +234,7 @@ class Instructions2(Page):
 class Elimination(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.remove == True
+        return player.keep == 1
 
 page_sequence = [Consent,
                  Captcha1,
