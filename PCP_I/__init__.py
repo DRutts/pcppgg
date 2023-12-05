@@ -133,7 +133,7 @@ class Captcha1(Page):
             player.incorrect_attempts_captcha1 += 1
             return errors
 
-    def before_next_page(player, Player):
+    def before_next_page(player, Player, timeout_happened):
         if timeout_happened:
             player.TimeoutCapthca1 = True
             player.participant.vars['boot'] = True
