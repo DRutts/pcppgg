@@ -4,10 +4,14 @@
 
 
 {{ block content }}
-
     <h4>Matchings</h4>
-
     <p>
+      The study consists of a series of rounds. In each round, you will be matched with the same group consisting of all 4 participants, i.e. you and 3 other players. The decisions that you and the other players make will determine the amounts earned by each of you.
+    </p>
+    <p>
+    </p>
+
+
 
 
 
