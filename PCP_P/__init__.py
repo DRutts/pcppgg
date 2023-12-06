@@ -28,6 +28,7 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
+    Rounded_PGEarnings = models.FloatField()
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
@@ -69,6 +70,7 @@ def SetPrelimPayoffs(group: Group):
     contributions = [p.Contribution for p in players]
     group.TotalContribution = sum(contributions)
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
+    group.Rounded_PGEarnings = round(group.PGEarnings, 2)
 
     for p in players:
         PID = GetPID(p) 
