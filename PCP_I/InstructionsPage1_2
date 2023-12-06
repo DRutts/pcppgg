@@ -4,7 +4,18 @@
 
 
 {{ block content }}
-
+    <h4>Example</h4>
+    <p>
+        Suppose you have 20 tokens for the round, and the earnings from tokens kept, contributed, and contributed by the others are 10, 5, and 5 respectively. 
+        <ul>
+            <li>If you keep all 20 tokens, then your earnings will be: 20 from the tokens kept, plus 0.4 times the number of tokens contributed by the other players in your group.</li>
+            <li>If you contribute all tokens, then your earnings will be: 0.4 * 20 = 8 from the tokens contributed, plus 0.4 times the number of tokens contribute by the other players in your group.</li>
+            <li>If you keep 10 and contribute 10, then your earnings will be:
+10 * 1 = 10 from the token kept, plus 10 x 0.4 = 4 for the token contributed, plus 0.4 times the number of tokens contributed by the other players in your group.</li>
+    </p>
+    <p>
+        Note: In each of the 3 above cases, what you earn from the others' contributions is: 0 if the others contribute 0 tokens, 4 if the other players contribute 10 tokens (in total) and keep the rest, 8 if the other players contribute 20 tokens (in total), etc.
+    </p>
 
 
 
