@@ -18,12 +18,21 @@
     </p>
     <h4>Earnings</h4>
     <p>
-
+        The payoff to you will equal:
+        <ul>
+            <li>1 token for each token you keep</li>
+            <li>0.4 tokens for each token you contribute</li>
+            <li>0.4 tokens for each token contributed by the 3 other players who you are matched with</li>
     </p>
-
-
-
-
+    <p>
+        Note: All players receive the same payment from the contribution.
+    </p>
+    <p>
+    </p>
+    <h4>Subsequent Matchings</h4>
+    <p>
+        You will be in the same group of 4 participants in all subsequent rounds, so the 3 other players you are matched with in one round are the same players that you are matched with in the next round. The player indices will not necessarily remain the same in all rounds. For example, in round 1, you may be labeled ‘player 1’, while in round 2, you may be labeled ‘player 3’.
+    </p>
 
 
 {{ next_button }}
