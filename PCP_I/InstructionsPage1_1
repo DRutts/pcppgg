@@ -2,9 +2,13 @@
     Instructions - Part 1
 {{ endblock }}
 
+
 {{ block content }}
 
-    <p>{{ next_button }}</p>
+
+
+
+{{ next_button }}
 
 {{ endblock }}
 
