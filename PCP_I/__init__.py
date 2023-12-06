@@ -47,7 +47,9 @@ class Player(BasePlayer):
     failed_too_many = models.BooleanField(initial=False)
     TimeoutQ1 = models.BooleanField(initial = False)
     TimeoutQ2 = models.BooleanField(initial = False)
-
+    Q1_1 = models.IntegerField()
+    Q2_1 = models.IntegerField()
+    Q2_2 = models.IntegerField()
     Q1a = models.IntegerField(
         label = "a) What is your income?"
     )
