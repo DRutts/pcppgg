@@ -6,11 +6,20 @@
 {{ block content }}
     <h4>Matchings</h4>
     <p>
-      The study consists of a series of rounds. In each round, you will be matched with the same group consisting of all 4 participants, i.e. you and 3 other players. The decisions that you and the other players make will determine the amounts earned by each of you.
+        The study consists of a series of rounds. In each round, you will be matched with the same group consisting of all 4 participants, i.e. you and 3 other players. The decisions that you and the other players make will determine the amounts earned by each of you.
     </p>
     <p>
     </p>
+    <h4>Contributions</h4>
+    <p>
+        You begin each round with an endowment "tokens," which may either be kept or contributed to a project. These tokens will be converted to dollars at the end of the study. The 3 players you are matched with will decide how many of their tokens to keep, and how many to contribute to the project. You will be not be able to see the others' decisions until after your decision is submitted.
+    </p>
+    <p>
+    </p>
+    <h4>Earnings</h4>
+    <p>
 
+    </p>
 
 
 
