@@ -174,7 +174,39 @@ class Captcha2(Page):
         else: 
             player.TimeoutCapthca2 = False
             
+class InstructionsPage1_1(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.keep == 0
 
+class InstructionsPage1_2(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.keep == 0
+
+class InstructionsPage1_3(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.keep == 0
+
+class InstructionsPage1_4(Page):
+    form_model = "player"
+    form_fields = ["Q1_1"]
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.keep == 0
+
+    @staticmethod
+    def error_message(player: Player, values):
+        solutions = dict(Q1_1=24)
+        errors = {name: 'Wrong' for name in solutions if values[name] != solutions[name]}
+        if errors:
+            player.num_failed_attempts_1 += 1
+            if player.num_failed_attempts_1 >= 10:
+                player.keep = 1
+            else:
+                return errors
 
 class Instructions1(Page):
 
