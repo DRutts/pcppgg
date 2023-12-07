@@ -39,7 +39,7 @@ class Player(BasePlayer):
     incorrect_attempts_captcha2 = models.IntegerField(initial = 0)
     TimeoutCapthca1 = models.BooleanField(initial = False)
     TimeoutCapthca2 = models.BooleanField(initial = False)
-
+    Q1_1 = models.IntegerField()
     num_failed_attempts_1 = models.IntegerField(initial=0)
 
 
