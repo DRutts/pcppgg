@@ -1,0 +1,25 @@
+{{ block title }}
+    Instructions - Part 1
+{{ endblock }}
+
+
+{{ block content }}
+    <h4>Instructions Summary</h4>
+    <p>
+        <ul>
+            <li>You will be matched with the same group of 3 other players in each round. There will be a total of 10 rounds in this part of the study.</li>
+            <li>All players will begin with 20 tokens which they may keep (and earn 1 token each) or contribute (and earn 0.4 tokens each), knowing that they will also earn 0.4 for each token contributed by other players in the group.</li>
+            <li>All players receive the same number of tokens from the project.</li>
+            <li>You will begin each round with a new endowment of 20 tokens, irrespective of how many tokens you may have kept or contributed in previous rounds.</li>
+            <li>There will be a total of 10 rounds in this part of the study. Your earnings for each round will be calculated for you and added to previous earnings, as will be shown in the total earnings column of the record form that you will see next.</li>
+    </p>
+    <p>
+    </p>
+    <h4>Comprehension Question</h4>
+    <p>Each member of the group has an endowment of 20 tokens. Suppose that you contribute 8 tokens to the project and suppose that the other group members contribute a total of 22 tokens to the project. What is your total income?</p>
+    {{ formfields }}
+
+
+{{ next_button }}
+
+{{ endblock }}
