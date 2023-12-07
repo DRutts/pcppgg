@@ -26,6 +26,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    Q2_1 = models.IntegerField()
     Q2_2 = models.IntegerField()
 
 
