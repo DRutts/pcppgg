@@ -53,7 +53,7 @@ class InstructionsPage2_1(Page):
         return player.participant.vars['boot'] == False 
 
 
-class InstructionsPage2_1(Page):
+class InstructionsPage2_2(Page):
     form_model = "player"
     form_fields = ["Q2_1", "Q2_2"]
     timeout_seconds = 60 * 3
