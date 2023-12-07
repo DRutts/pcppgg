@@ -29,7 +29,9 @@ class Player(BasePlayer):
     Q2_1 = models.IntegerField(
         label = 'Suppose that, in the second phase, you send 9, 5, and 0 deduction points to the other three players, respectively. What is the total cost of the deduction points you sent?'
     )
-    Q2_2 = models.IntegerField()
+    Q2_2 = models.IntegerField(
+        label = 'Suppose that, in the second phase, you received a total of 4 deduction points from other players. By how many tokens will your income decrease?'
+    )
 
 
 
