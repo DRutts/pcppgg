@@ -16,7 +16,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 10
     ENDOWMENT = 25
     PUNISHMENT_MULTIPLIER = 3
-    MAX_PUNISHMENT = -10
+    MAX_PUNISHMENT = 10
     
 
 
@@ -32,7 +32,7 @@ class Group(BaseGroup):
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
-            min=C.MAX_PUNISHMENT, max=0, label="Deduction assigned to Player {}".format(id_in_group)
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
