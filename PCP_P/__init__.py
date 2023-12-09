@@ -98,7 +98,7 @@ def SetRevisedPayoffs(group: Group):
 
 class ShuffleWaitPage(WaitPage):
     group_by_arrival_time = True
-    body_text = "Please wait for the other players to join. The waiting time will take at most 20 minutes."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 5 minutes."
     
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
