@@ -109,7 +109,7 @@ class Captcha2(Page):
 
     @staticmethod
     def error_message(player: Player, values):
-        solutions = dict(captcha2=["eps10 vector", 'eps10 vect0r', "epsio vector", "epsio vect0r", 'eps1o vector', 'eps1o vect0r'])
+        solutions = dict(captcha2=["Eps10 vector", 'Eps10 vect0r', "Epslo vector", "Epslo vect0r", 'Eps1o vector', 'Eps1o vect0r'])
         errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. Use lowercase.''' for name in solutions if values[name] not in solutions[name]}
         if errors:
             player.incorrect_attempts_captcha2 += 1
