@@ -84,7 +84,7 @@ class Captcha1(Page):
         errors = {name: '''Please type the characters correctly, case sensitive''' for name in solutions if values[name] != solutions[name]}
         if errors:
             player.incorrect_attempts_captcha1 += 1
-            if player.incorrect_attempts_captcha1 >= 3:
+            if player.incorrect_attempts_captcha1 >= 4:
                 player.keep = 1
             else:
                 return errors
@@ -113,7 +113,7 @@ class Captcha2(Page):
         errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. Use lowercase.''' for name in solutions if values[name] not in solutions[name]}
         if errors:
             player.incorrect_attempts_captcha2 += 1
-            if player.incorrect_attempts_captcha2 >= 3:
+            if player.incorrect_attempts_captcha2 >= 4:
                 player.keep = 1
             else:
                 return errors
