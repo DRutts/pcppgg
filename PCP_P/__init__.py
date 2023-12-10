@@ -89,6 +89,7 @@ def SetRevisedPayoffs(group: Group):
         p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
+        p.Rounded_RevisedPayoff = round(p.RevisedPayoff, 2)
 
 
 
