@@ -84,9 +84,9 @@ def SetRevisedPayoffs(group: Group):
     for p in players:
         PID = GetPID(p)   
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
-        p.TotalPunishmentsTo = -1*sum(punishments_received)
+        p.TotalPunishmentsTo = sum(punishments_received)
         punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
-        p.TotalPunishmentsFrom = -1*sum(punishments_sent)
+        p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
 
