@@ -90,7 +90,8 @@ def SetPrelimPayoffs(group: Group):
 class ShuffleWaitPage(WaitPage):
     group_by_arrival_time = True
     body_text = "Please wait for the other players to join."
-    
+
+    @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
 
@@ -111,6 +112,8 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
+    group_by_arrival_time = True
+    body_text = "Please wait for the other players to join. This will take at most 1 minute."
     @staticmethod
 
     def is_displayed(player: Player):
