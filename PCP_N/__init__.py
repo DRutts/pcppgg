@@ -87,13 +87,20 @@ def SetPrelimPayoffs(group: Group):
 #       PAGE PART
 # ======================
 
-class ShuffleWaitPage(WaitPage):
+class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
     body_text = "Please wait for the other players to join."
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.round_number == 1
+
+class Inter_RoundWaitPage(WaitPage):
+    body_text = "Please wait for the other players to join. This will take at most 1 minute."
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number >= 2
 
 class ContributionPage(Page):
     form_model = "player"
@@ -112,7 +119,6 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    group_by_arrival_time = True
     body_text = "Please wait for the other players to join. This will take at most 1 minute."
     @staticmethod
 
