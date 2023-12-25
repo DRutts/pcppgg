@@ -115,7 +115,7 @@ class ContributionPage(Page):
     
     def before_next_page(player, timeout_happened):
         if timeout_happened:
-            player.Contribution = 0
+            player.Contribution = random.randint(0,25)
 
 
 
