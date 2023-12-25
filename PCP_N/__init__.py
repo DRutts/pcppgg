@@ -96,7 +96,7 @@ class GroupingWaitPage(WaitPage):
         return player.round_number == 1
 
 class Inter_RoundWaitPage(WaitPage):
-    body_text = "Please wait for the other players to join. This will take at most 1 minute."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
 
     @staticmethod
     def is_displayed(player: Player):
@@ -119,7 +119,7 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    body_text = "Please wait for the other players to join. This will take at most 1 minute."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
     @staticmethod
 
     def is_displayed(player: Player):
