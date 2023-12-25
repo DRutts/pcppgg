@@ -148,7 +148,8 @@ class InformationScreen(Page):
         )
 
 
-page_sequence = [ShuffleWaitPage,
+page_sequence = [GroupingWaitPage,
+                 Inter_RoundWaitPage
                  ContributionPage, 
                  ResultsWaitPage, 
                  PreliminaryResults,
