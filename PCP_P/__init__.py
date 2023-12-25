@@ -178,7 +178,7 @@ class PunishmentPage(Page):
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
-    body_text = "Please wait for the other players to join. The waiting time will take at most 2 minutes."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 3 minutes."
 
     @staticmethod
     def is_displayed(player: Player):
