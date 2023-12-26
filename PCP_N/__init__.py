@@ -90,6 +90,7 @@ def SetPrelimPayoffs(group: Group):
 class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
     body_text = "Please wait for the other players to join."
+    template_name = 'your_app_name/MyWaitPage.html'
 
     @staticmethod
     def is_displayed(player: Player):
