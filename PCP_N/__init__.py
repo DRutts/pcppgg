@@ -38,6 +38,7 @@ class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
     Rounded_PGEarnings = models.FloatField()
+    
 
 
 
@@ -62,8 +63,24 @@ class Player(BasePlayer):
 #    CALCULATION PART
 # ======================
 
+def ShuffleID(group: Group):
+    IDList = ["A", "B", "C", "D"]
+    P1id = IDList.pop(random.randomint(0,3))
+    IDList_i2 = IDList.remove("P1id")
+    P2id = IDList_i2.pop(random.randomint(0,2))
+    IDList_i3 = IDList_i2.remove("P2id")
+    P3id = IDList_i3.pop(random.randomint(0,1))
+    IDList_i4 = IDList_i3.remove("P3id")
+    P4id = IDList_i4[0]
+    DispIDList = [P1id, P2id, P3id, P4id]
+
+    for p in players:
+        p.DispID = DispIDList[p.id_in_group]
+    
+
+
 def GetPID(player: Player):
-    return 'PunishmentTo{}'.format(player.id_in_group)
+    return 'PunishmentTo{}'.format(player.DispID)
 
 
 
@@ -73,14 +90,26 @@ def SetPrelimPayoffs(group: Group):
     group.TotalContribution = sum(contributions)
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
+    
+    IDList = ["A", "B", "C", "D"]
+    P1id = IDList.pop(random.randomint(0,3))
+    IDList_i2 = IDList.remove("P1id")
+    P2id = IDList_i2.pop(random.randomint(0,2))
+    IDList_i3 = IDList_i2.remove("P2id")
+    P3id = IDList_i3.pop(random.randomint(0,1))
+    IDList_i4 = IDList_i3.remove("P3id")
+    P4id = IDList_i4[0]
+    DispIDList = [P1id, P2id, P3id, P4id]
 
     for p in players:
+        p.DispID = DispIDList[p.id_in_group]
         PID = GetPID(p) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.Rounded_PGEarnings
 
 
+    
 
 
 
@@ -147,6 +176,7 @@ class InformationScreen(Page):
     def vars_for_template(player: Player):
         return dict(
             other_players=player.get_others_in_group(),
+            DispID = random.randint(1, 4)
         )
 
 
