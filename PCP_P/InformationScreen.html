@@ -2,7 +2,7 @@
 {{ block content }}
 
     <p>
-        You are player {{ player.id_in_group }}. You contributed {{ player.Contribution }} token(s).
+        You are player {{ player.DispID }}. You contributed {{ player.Contribution }} token(s).
         Here are the other players' contributions:
     </p>
     <table class="table">
@@ -22,7 +22,7 @@
         </tr>
         {{ for p in other_players }}
             <tr>
-                <td>Player {{ p.id_in_group }}</td>
+                <td>Player {{ p.DispID }}</td>
                 <td>{{ C.ENDOWMENT }}</td>
                 <td>{{ p.Contribution }}</td>
                 <td>{{ p.ContributionPercentage }}</td>
