@@ -1,5 +1,6 @@
 from otree.api import *
 import time
+import random
 
 doc = """
 Your app description
@@ -115,7 +116,7 @@ class ContributionPage(Page):
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
-            player.Contribution = randint(0,20)
+            player.Contribution = random.randint(0,20)
 
 
 
