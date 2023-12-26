@@ -195,7 +195,7 @@ class RevisedResults(Page):
 
 
 page_sequence = [InstructionsWaitPage,
-                 Inter_RoundWaitPage
+                 Inter_RoundWaitPage,
                  ContributionPage, 
                  ResultsWaitPage, 
                  PreliminaryResults,
