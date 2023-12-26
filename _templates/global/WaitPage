@@ -1,0 +1,8 @@
+{{ extends 'otree/WaitPage.html' }}
+{{ block title }}{{ title_text }}{{ endblock }}
+{{ block content }}
+    {{ body_text }}
+    <p>
+        Waiting for {{ 4-len(waiting_players) }}
+    </p>
+{{ endblock }}
