@@ -3,6 +3,6 @@
 {{ block content }}
     {{ body_text }}
     <p>
-        Waiting for {{ 4-len(waiting_players) }}
+        {{ len(waiting_players) }} of 4 players ready.
     </p>
 {{ endblock }}
