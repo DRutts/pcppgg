@@ -175,8 +175,7 @@ class InformationScreen(Page):
 
     def vars_for_template(player: Player):
         return dict(
-            other_players=player.get_others_in_group(),
-            DispID = random.randint(1, 4)
+            other_players=player.get_others_in_group()
         )
 
 
