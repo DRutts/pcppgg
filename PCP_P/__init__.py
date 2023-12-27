@@ -62,10 +62,10 @@ class Player(BasePlayer):
 # ======================
 
 def GetPID(player: Player):
-    return 'PunishmentTo{}'.format(player.DispID)
+    return 'PunishmentTo{}'.format(player.id_in_group)
 
 def Punishment_Fields(player: Player):
-    return ['PunishmentTo{}'.format(p.DispID) for p in player.get_others_in_group()]
+    return ['PunishmentTo{}'.format(p.id_in_group) for p in player.get_others_in_group()]
 
 def SetPrelimPayoffs(group: Group):
     players = group.get_players()
