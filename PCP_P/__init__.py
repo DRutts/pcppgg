@@ -86,13 +86,15 @@ def SetPrelimPayoffs(group: Group):
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
 
-
     for p in players:
 
         PID = GetPID(p) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.Rounded_PGEarnings
+
+
+    
 
 
 
@@ -117,16 +119,14 @@ def SetRevisedPayoffs(group: Group):
 
 class InstructionsWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
-    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 5 minutes.") 
-    
+    body_text = Please wait for the other players to join. The waiting time will take at most 6 minutes."    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
 
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
-    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 30 seconds.")
-    
+    body_text = Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number >= 2
@@ -147,7 +147,7 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 1 minute.")
+    body_text = Please wait for the other players to join. The waiting time will take at most 1 minute."
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
@@ -196,8 +196,7 @@ class PunishmentPage(Page):
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
-    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 3 minutes.")
-
+    body_text = Please wait for the other players to join. The waiting time will take at most 3 minutes."
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
