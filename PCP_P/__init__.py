@@ -61,6 +61,17 @@ class Player(BasePlayer):
 #    CALCULATION PART
 # ======================
 
+def ShuffleID(group: Group):
+    IDList = [1, 2, 3, 4]
+    P1id = IDList.pop(random.randint(0,3))
+    P2id = IDList.pop(random.randint(0,2))
+    P3id = IDList.pop(random.randint(0,1))
+    P4id = IDList[0]
+    DispIDList = [P1id, P2id, P3id, P4id]
+    
+    for p in players:
+        p.DispID = DispIDList[p.id_in_group - 1]
+
 def GetPID(player: Player):
     return 'PunishmentTo{}'.format(player.id_in_group)
 
@@ -73,16 +84,10 @@ def SetPrelimPayoffs(group: Group):
     group.TotalContribution = sum(contributions)
     group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
-    
-    IDList = [1, 2, 3, 4]
-    P1id = IDList.pop(random.randint(0,3))
-    P2id = IDList.pop(random.randint(0,2))
-    P3id = IDList.pop(random.randint(0,1))
-    P4id = IDList[0]
-    DispIDList = [P1id, P2id, P3id, P4id]
+
 
     for p in players:
-        p.DispID = DispIDList[p.id_in_group - 1]
+
         PID = GetPID(p) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
@@ -110,16 +115,16 @@ def SetRevisedPayoffs(group: Group):
 # ======================
 
 class InstructionsWaitPage(WaitPage):
-
-    body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 5 minutes.") 
+    after_all_players_arrive = ShuffleID
+    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 5 minutes.") 
     
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
 
 class Inter_RoundWaitPage(WaitPage):
-
-    body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 30 seconds.")
+    after_all_players_arrive = ShuffleID
+    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 30 seconds.")
     
     @staticmethod
     def is_displayed(player: Player):
@@ -141,7 +146,7 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 1 minute.")
+    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 1 minute.")
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
@@ -190,7 +195,7 @@ class PunishmentPage(Page):
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
-    body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 3 minutes.")
+    #body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 3 minutes.")
 
     @staticmethod
     def is_displayed(player: Player):
