@@ -62,6 +62,7 @@ class Player(BasePlayer):
 # ======================
 
 def ShuffleID(group: Group):
+    players = group.get_players()
     IDList = [1, 2, 3, 4]
     P1id = IDList.pop(random.randint(0,3))
     P2id = IDList.pop(random.randint(0,2))
