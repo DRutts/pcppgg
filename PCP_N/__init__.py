@@ -44,7 +44,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     PID = models.IntegerField()
-    DispID = models.StrField()
+    DispID = models.StringField()
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
