@@ -45,10 +45,10 @@ class Player(BasePlayer):
     ContributionPercentage = models.FloatField()
     RetainedEndowment = models.IntegerField()
     PreliminaryPayoff = models.FloatField()
-    PunishmentToA = make_punishment_field('A')
-    PunishmentToB = make_punishment_field('B')
-    PunishmentToC = make_punishment_field('C')
-    PunishmentToD = make_punishment_field('D')
+    PunishmentTo1 = make_punishment_field(1)
+    PunishmentTo2 = make_punishment_field(2)
+    PunishmentTo3 = make_punishment_field(3)
+    PunishmentTo4 = make_punishment_field(4)
     TotalPunishmentsFrom = models.IntegerField()
     TotalPunishmentsTo = models.IntegerField()
     PayoffReduction = models.IntegerField()
@@ -62,10 +62,10 @@ class Player(BasePlayer):
 # ======================
 
 def GetPID(player: Player):
-    return 'PunishmentTo{}'.format(player.DispID)
+    return 'PunishmentTo{}'.format(player.id_in_group)
 
 def Punishment_Fields(player: Player):
-    return ['PunishmentTo{}'.format(p.DispID) for p in player.get_others_in_group()]
+    return ['PunishmentTo{}'.format(p.id_in_group) for p in player.get_others_in_group()]
 
 def SetPrelimPayoffs(group: Group):
     players = group.get_players()
@@ -97,7 +97,7 @@ def SetRevisedPayoffs(group: Group):
         PID = GetPID(p)   
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
         p.TotalPunishmentsTo = sum(punishments_received)
-        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p.DispID)]
+        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p.id_in_group)]
         p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
@@ -183,10 +183,10 @@ class PunishmentPage(Page):
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
-            player.PunishmentTo1 = 0
-            player.PunishmentTo2 = 0
-            player.PunishmentTo3 = 0
-            player.PunishmentTo4 = 0
+            player.PunishmentToA = 0
+            player.PunishmentToB = 0
+            player.PunishmentToC = 0
+            player.PunishmentToD = 0
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
