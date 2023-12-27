@@ -75,12 +75,9 @@ def SetPrelimPayoffs(group: Group):
     
     IDList = ["A", "B", "C", "D"]
     P1id = IDList.pop(random.randint(0,3))
-    IDList_i2 = IDList.remove(P1id)
-    P2id = IDList_i2.pop(random.randint(0,2))
-    IDList_i3 = IDList_i2.remove(P2id)
-    P3id = IDList_i3.pop(random.randint(0,1))
-    IDList_i4 = IDList_i3.remove(P3id)
-    P4id = IDList_i4[0]
+    P2id = IDList.pop(random.randint(0,2))
+    P3id = IDList.pop(random.randint(0,1))
+    P4id = IDList[0]
     DispIDList = [P1id, P2id, P3id, P4id]
 
     for p in players:
