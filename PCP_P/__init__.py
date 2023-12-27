@@ -37,7 +37,7 @@ def make_punishment_field(DispID):
         )
 
 class Player(BasePlayer):
-    PID = models.IntegerField()
+    PID = models.StringField()
     DispID = models.StringField()
     Contribution = models.IntegerField(
         min=0, max=20, label="How much will you contribute?"
@@ -83,7 +83,7 @@ def SetPrelimPayoffs(group: Group):
 
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
-        PID = GetPID(p) 
+        PID = GetPID(p.DispID) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
         p.RetainedEndowment = C.ENDOWMENT - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.Rounded_PGEarnings
