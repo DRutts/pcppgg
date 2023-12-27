@@ -94,7 +94,7 @@ def SetPrelimPayoffs(group: Group):
 def SetRevisedPayoffs(group: Group):
     players = group.get_players()
     for p in players:
-        PID = GetPID(p)   
+        PID = GetPID(p.DispID)   
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
         p.TotalPunishmentsTo = sum(punishments_received)
         punishments_sent = [getattr(p, field) for field in Punishment_Fields(p.DispID)]
