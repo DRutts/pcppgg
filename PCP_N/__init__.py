@@ -77,7 +77,7 @@ def ShuffleID(group: Group):
     
 
     for p in players:
-        p.DispID = DispIDList[p.id_in_group]
+        p.DispID = DispIDList[p.id_in_group - 1]
     
 
 
