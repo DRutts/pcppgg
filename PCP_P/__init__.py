@@ -33,7 +33,7 @@ class Group(BaseGroup):
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
-            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(DispID)
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
@@ -62,10 +62,10 @@ class Player(BasePlayer):
 # ======================
 
 def GetPID(player: Player):
-    return 'PunishmentTo{}'.format(player.id_in_group)
+    return 'PunishmentTo{}'.format(player.DispID)
 
 def Punishment_Fields(player: Player):
-    return ['PunishmentTo{}'.format(p.id_in_group) for p in player.get_others_in_group()]
+    return ['PunishmentTo{}'.format(p.DispID) for p in player.get_others_in_group()]
 
 def SetPrelimPayoffs(group: Group):
     players = group.get_players()
