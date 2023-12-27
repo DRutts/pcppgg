@@ -31,9 +31,9 @@ class Group(BaseGroup):
     PGEarnings = models.FloatField()
     Rounded_PGEarnings = models.FloatField()
 
-def make_punishment_field(DispID):
+def make_punishment_field(id_in_group):
         return models.IntegerField(
-            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(DispID)
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
@@ -97,7 +97,7 @@ def SetRevisedPayoffs(group: Group):
         PID = GetPID(p) 
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
         p.TotalPunishmentsTo = sum(punishments_received)
-        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p.DispID)]
+        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
         p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
