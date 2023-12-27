@@ -31,9 +31,9 @@ class Group(BaseGroup):
     PGEarnings = models.FloatField()
     Rounded_PGEarnings = models.FloatField()
 
-def make_punishment_field(id_in_group):
+def make_punishment_field(DispID):
         return models.IntegerField(
-            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(DispID)
         )
 
 class Player(BasePlayer):
