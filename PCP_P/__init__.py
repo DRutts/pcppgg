@@ -48,7 +48,7 @@ class Player(BasePlayer):
     PunishmentToA = make_punishment_field('A')
     PunishmentToB = make_punishment_field('B')
     PunishmentToC = make_punishment_field('C')
-    PunishmentToD = make_punishment_field('C')
+    PunishmentToD = make_punishment_field('D')
     TotalPunishmentsFrom = models.IntegerField()
     TotalPunishmentsTo = models.IntegerField()
     PayoffReduction = models.IntegerField()
