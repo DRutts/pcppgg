@@ -93,9 +93,9 @@ def SetPrelimPayoffs(group: Group):
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
     
     IDList = ["A", "B", "C", "D"]
-    P1id = IDList.pop(random.randomint(0,3))
-    P2id = IDList.pop(random.randomint(0,2))
-    P3id = IDList.pop(random.randomint(0,1))
+    P1id = IDList.pop(random.randint(0,3))
+    P2id = IDList.pop(random.randint(0,2))
+    P3id = IDList.pop(random.randint(0,1))
     P4id = IDList[0]
     DispIDList = [P1id, P2id, P3id, P4id]
 
