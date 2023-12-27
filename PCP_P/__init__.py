@@ -111,7 +111,7 @@ def SetRevisedPayoffs(group: Group):
 
 class InstructionsWaitPage(WaitPage):
 
-    body_text = f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 5 minutes." 
+    body_text = print(f"{len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 5 minutes.") 
     
     @staticmethod
     def is_displayed(player: Player):
@@ -119,7 +119,7 @@ class InstructionsWaitPage(WaitPage):
 
 class Inter_RoundWaitPage(WaitPage):
 
-    body_text = f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 30 seconds."
+    body_text = print(f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 30 seconds.")
     
     @staticmethod
     def is_displayed(player: Player):
@@ -141,7 +141,7 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    body_text = f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 1 minute."
+    body_text = print(f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 1 minute.")
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
@@ -190,7 +190,7 @@ class PunishmentPage(Page):
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
-    body_text = f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 3 minutes."
+    body_text = print(f"len(waiting_players)} of 4 players ready. Please wait for the other players to join. The waiting time will take at most 3 minutes.")
 
     @staticmethod
     def is_displayed(player: Player):
