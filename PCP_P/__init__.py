@@ -97,7 +97,7 @@ def SetRevisedPayoffs(group: Group):
         PID = GetPID(p)   
         punishments_received = [getattr(other, PID) for other in p.get_others_in_group()]
         p.TotalPunishmentsTo = sum(punishments_received)
-        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p.id_in_group)]
+        punishments_sent = [getattr(p, field) for field in Punishment_Fields(p)]
         p.TotalPunishmentsFrom = sum(punishments_sent)
         p.PayoffReduction = C.PUNISHMENT_MULTIPLIER*p.TotalPunishmentsTo
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
@@ -183,10 +183,10 @@ class PunishmentPage(Page):
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
-            player.PunishmentToA = 0
-            player.PunishmentToB = 0
-            player.PunishmentToC = 0
-            player.PunishmentToD = 0
+            player.PunishmentTo1 = 0
+            player.PunishmentTo2 = 0
+            player.PunishmentTo3 = 0
+            player.PunishmentTo4 = 0
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
