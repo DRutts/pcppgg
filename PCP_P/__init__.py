@@ -39,6 +39,8 @@ def make_punishment_field(id_in_group):
 class Player(BasePlayer):
     PID = models.IntegerField()
     DispID = models.IntegerField()
+    Timeout_C = models.IntegerField(initial = 0)
+    Timeout_P = models.IntegerField(initial = 0)
     Contribution = models.IntegerField(
         min=0, max=20, label="How much will you contribute?"
     )
@@ -143,6 +145,7 @@ class ContributionPage(Page):
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.Contribution = random.randint(0,20)
+            player.Timeout_C = 1
 
 
 
@@ -193,6 +196,7 @@ class PunishmentPage(Page):
             player.PunishmentTo2 = 0
             player.PunishmentTo3 = 0
             player.PunishmentTo4 = 0
+            player.Timeout_P = 1
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
