@@ -119,14 +119,14 @@ def SetRevisedPayoffs(group: Group):
 
 class InstructionsWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
-    body_text = Please wait for the other players to join. The waiting time will take at most 6 minutes."    
+    body_text = "Please wait for the other players to join. The waiting time will take at most 6 minutes."    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
 
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
-    body_text = Please wait for the other players to join. The waiting time will take at most 30 seconds."    
+    body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number >= 2
@@ -147,7 +147,7 @@ class ContributionPage(Page):
 
 
 class ResultsWaitPage(WaitPage):
-    body_text = Please wait for the other players to join. The waiting time will take at most 1 minute."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
@@ -196,7 +196,7 @@ class PunishmentPage(Page):
 
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
-    body_text = Please wait for the other players to join. The waiting time will take at most 3 minutes."
+    body_text = "Please wait for the other players to join. The waiting time will take at most 3 minutes."
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False
