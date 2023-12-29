@@ -45,6 +45,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     PID = models.IntegerField()
     DispID = models.IntegerField()
+    Timeout_C = models.IntegerField(initial = 0)
     Contribution = models.IntegerField(
         min=0, max=C.ENDOWMENT, label="How much will you contribute?"
     )
@@ -138,6 +139,7 @@ class ContributionPage(Page):
     def before_next_page(player, timeout_happened):
         if timeout_happened:
             player.Contribution = random.randint(0,20)
+            player.Timeout_C = 1
 
 
 
