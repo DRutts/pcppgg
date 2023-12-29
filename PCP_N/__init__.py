@@ -109,6 +109,7 @@ def SetPrelimPayoffs(group: Group):
 
 class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
+    after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join."
 
 
@@ -117,6 +118,7 @@ class GroupingWaitPage(WaitPage):
         return player.round_number == 1
 
 class Inter_RoundWaitPage(WaitPage):
+    after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
 
     @staticmethod
