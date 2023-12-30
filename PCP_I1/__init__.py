@@ -32,7 +32,7 @@ class Player(BasePlayer):
             widget=widgets.RadioSelect
         )
     keep = models.IntegerField(initial = 0)
-
+    prolificID = models.StringField(min_length = 1, max_length = 200)
     captcha1 = models.StringField(max_length = 200)
     captcha2 = models.StringField(max_length = 200)
     incorrect_attempts_captcha1 = models.IntegerField(initial = 0)
@@ -72,6 +72,15 @@ class Consent(Page):
         if errors:
             return errors
 
+class ProlificID(Page):
+    form_model = 'player'
+    form_fields = ['prolificID']
+
+    @staticmethod
+    def consent_error_message(player: Player, value):
+        errors = {name: '''Please enter your Prolific ID''' if values[name] == ""}
+        if errors:
+            return errors
 
 class Captcha1(Page):
     form_model = 'player'
