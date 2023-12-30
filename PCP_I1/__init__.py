@@ -176,6 +176,7 @@ class Elimination(Page):
         return player.keep == 1
 
 page_sequence = [Consent,
+                 ProlificID,
                  Captcha1,
                  Captcha2,
                  InstructionsPage1_1, 
