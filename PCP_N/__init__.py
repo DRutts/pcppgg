@@ -14,7 +14,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'PCP_N'
     MULTIPLIER = 1.6
     PLAYERS_PER_GROUP = 4
-    NUM_ROUNDS = 2
+    NUM_ROUNDS = 10
     ENDOWMENT = 20
 
 
