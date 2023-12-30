@@ -76,11 +76,6 @@ class ProlificID(Page):
     form_model = 'player'
     form_fields = ['prolificID']
 
-    @staticmethod
-    def consent_error_message(player: Player, value):
-        errors = {name: '''Please enter your Prolific ID''' if values[name] == ""}
-        if errors:
-            return errors
 
 class Captcha1(Page):
     form_model = 'player'
