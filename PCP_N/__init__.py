@@ -116,7 +116,7 @@ class GroupingWaitPage(WaitPage):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1
+        return player.round_number == 1 and player.participant.vars['boot'] == False
 
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
@@ -124,7 +124,7 @@ class Inter_RoundWaitPage(WaitPage):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2
+        return player.round_number >= 2 and player.participant.vars['boot'] == False
 
 class ContributionPage(Page):
     form_model = "player"
