@@ -124,14 +124,14 @@ class InstructionsWaitPage(WaitPage):
     body_text = "Please wait for the other players to join. The waiting time will take at most 6 minutes."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1
+        return player.round_number == 1 and player.participant.vars['boot'] == False
 
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2
+        return player.round_number >= 2 and player.participant.vars['boot'] == False
 
 class ContributionPage(Page):
     form_model = "player"
