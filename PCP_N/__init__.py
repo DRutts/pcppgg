@@ -118,6 +118,9 @@ class GroupingWaitPage(WaitPage):
     def is_displayed(player: Player):
         return player.round_number == 1 and player.participant.vars['boot'] == False
 
+    @staticmethod
+    
+
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
