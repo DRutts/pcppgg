@@ -43,6 +43,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
@@ -110,6 +111,15 @@ def SetPrelimPayoffs(group: Group):
 
 class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
+
+    def group_by_arrival_time_method(subsession, waiting_players):
+    if len(waiting_players) >= 4:
+        return waiting_players[:4]
+    for player in waiting_players:
+        if waiting_too_long(player):
+            # make a single-player group.
+            player.Remove = 1
+            return [player]
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page."
 
@@ -118,7 +128,6 @@ class GroupingWaitPage(WaitPage):
     def is_displayed(player: Player):
         return player.round_number == 1 and player.participant.vars['boot'] == False
 
-    @staticmethod
     
 
 class Inter_RoundWaitPage(WaitPage):
@@ -174,6 +183,9 @@ class InformationScreen(Page):
         return dict(
             other_players=player.get_others_in_group()
         )
+
+    def before_next_page(player):
+        
 
 
 page_sequence = [GroupingWaitPage,
