@@ -93,7 +93,7 @@ class Questionnaire(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
 class Questionnaire2(Page):
     form_model = 'player'
@@ -101,12 +101,12 @@ class Questionnaire2(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class Completion(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
 
 page_sequence = [Questionnaire,
