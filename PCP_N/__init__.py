@@ -136,7 +136,7 @@ class Inter_RoundWaitPage(WaitPage):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2 and player.participant.vars['boot'] == False
+        return player.round_number >= 2 and player.participant.vars['boot'] == False and player.Remove == 0
 
 class ContributionPage(Page):
     form_model = "player"
@@ -160,7 +160,7 @@ class ResultsWaitPage(WaitPage):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.Remove == 0
     
     after_all_players_arrive = SetPrelimPayoffs
 
@@ -169,7 +169,7 @@ class PreliminaryResults(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.Remove == 0
 
     
 
@@ -177,14 +177,19 @@ class InformationScreen(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.Remove == 0
 
     def vars_for_template(player: Player):
         return dict(
             other_players=player.get_others_in_group()
         )
 
-    def before_next_page(player):
+    def before_next_page(player: Player, timeout_happened):
+        if player.Remove == 0:
+            player.participant.vars['WTL'] = False
+        else: 
+            player.participant.vars['WTL'] = True
+    
         
 
 
