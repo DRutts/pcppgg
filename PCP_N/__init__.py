@@ -56,7 +56,7 @@ class Player(BasePlayer):
 
 
     def waiting_too_long(player):
-        return time.time() - player.participant.vars['wait_page_arrival_time'] > 30
+        return time.time() - player.participant.vars['wait_page_arrival_time'] > 15*60
 
 
 
