@@ -114,7 +114,7 @@ class Captcha2(Page):
     @staticmethod
     def error_message(player: Player, values):
         solutions = dict(captcha2=["eps10 vector", 'eps10 vect0r', "epslo vector", "epslo vect0r", 'eps1o vector', 'eps1o vect0r'])
-        errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. ''' for name in solutions if values[name].lower() not in solutions[name]}
+        errors = {name: '''Please type the characters correctly, including any numbers, letters, and spaces. Not case sensitive''' for name in solutions if values[name].lower() not in solutions[name]}
         if errors:
             player.incorrect_attempts_captcha2 += 1
             if player.incorrect_attempts_captcha2 >= 4:
