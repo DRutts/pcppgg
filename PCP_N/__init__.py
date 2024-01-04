@@ -29,7 +29,7 @@ class Subsession(BaseSubsession):
         if len(waiting_players) >= 4:
             return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
         for player in waiting_players:
-            if waiting_too_long(player):
+            if player.waiting_too_long():
                 player.Remove = 1
                 return[player]
 
