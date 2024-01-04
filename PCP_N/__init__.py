@@ -23,8 +23,15 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
-
+    def group_by_arrival_time_method(subsession, waiting_players):
+        for player in waiting_players: 
+            player.participant.vars['WTL'] = False
+        if len(waiting_players) >= 4:
+            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
+        for player in waiting_players:
+            if waiting_too_long(player):
+                player.participant.vars['WTL'] = True
+                return[player]
 
 class Group(BaseGroup):
     TotalContribution = models.IntegerField()
@@ -102,15 +109,7 @@ def SetPrelimPayoffs(group: Group):
 # ======================
 
 class GroupingWaitPage(WaitPage):
-    def group_by_arrival_time_method(subsession, waiting_players):
-        for player in waiting_players: 
-            player.participant.vars['WTL'] = False
-        if len(waiting_players) >= 4:
-            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
-        for player in waiting_players:
-            if waiting_too_long(player):
-                player.participant.vars['WTL'] = True
-                return[player]
+    group_by_arrival_time = True
 
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page. Once you have been on the page for 15 minutes, you will be asked to return the study."
