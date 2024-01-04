@@ -121,7 +121,7 @@ class GroupingWaitPage(WaitPage):
             player.Remove = 1
             return [player]
     after_all_players_arrive = ShuffleID
-    body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page."
+    body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page. Once you have been on the page for 15 minutes, you will be asked to return the study."
 
 
     @staticmethod
@@ -190,7 +190,10 @@ class InformationScreen(Page):
         else: 
             player.participant.vars['WTL'] = True
     
-        
+class WaitTooLong(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.Remove == 1
 
 
 page_sequence = [GroupingWaitPage,
@@ -198,5 +201,6 @@ page_sequence = [GroupingWaitPage,
                  ContributionPage, 
                  ResultsWaitPage, 
                  PreliminaryResults,
-                 InformationScreen
+                 InformationScreen,
+                 WaitTooLong
                 ]
