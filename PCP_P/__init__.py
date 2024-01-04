@@ -124,14 +124,14 @@ class InstructionsWaitPage(WaitPage):
     body_text = "Please wait for the other players to join. The waiting time will take at most 6 minutes."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 and player.participant.vars['boot'] == False
+        return player.round_number == 1 and player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class Inter_RoundWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2 and player.participant.vars['boot'] == False
+        return player.round_number >= 2 and player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class ContributionPage(Page):
     form_model = "player"
@@ -140,7 +140,7 @@ class ContributionPage(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -154,21 +154,21 @@ class ResultsWaitPage(WaitPage):
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 
 class PreliminaryResults(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
 
 class InformationScreen(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
     def vars_for_template(player: Player):
         return dict(
@@ -183,7 +183,7 @@ class PunishmentPage(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
     def vars_for_template(player: Player):
         return dict(
@@ -203,14 +203,14 @@ class PunishmentWaitPage(WaitPage):
     body_text = "Please wait for the other players to join. The waiting time will take at most 3 minutes."
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class RevisedResults(Page):
     timeout_seconds = 30
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 
 
