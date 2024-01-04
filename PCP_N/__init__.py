@@ -23,15 +23,7 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def group_by_arrival_time_method(subsession, waiting_players):
-        for player in waiting_players: 
-            player.incomplete = 0
-        if len(waiting_players) >= 4:
-            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
-        for player in waiting_players:
-            if player.waiting_too_long():
-                player.incomplete = 1
-                return[player]
+    pass
 
 
 class Group(BaseGroup):
@@ -110,15 +102,16 @@ def SetPrelimPayoffs(group: Group):
 # ======================
 
 class GroupingWaitPage(WaitPage):
-    group_by_arrival_time = True
-
     def group_by_arrival_time_method(subsession, waiting_players):
+        for player in waiting_players: 
+            player.participant.vars['WTL'] = False
         if len(waiting_players) >= 4:
-            return waiting_players[:4]
+            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
         for player in waiting_players:
             if waiting_too_long(player):
-                player.Remove = 1
-                return [player]
+                player.participant.vars['WTL'] = True
+                return[player]
+
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page. Once you have been on the page for 15 minutes, you will be asked to return the study."
 
@@ -135,7 +128,7 @@ class Inter_RoundWaitPage(WaitPage):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2 and player.participant.vars['boot'] == False and player.Remove == 0
+        return player.round_number >= 2 and player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class ContributionPage(Page):
     form_model = "player"
@@ -145,7 +138,7 @@ class ContributionPage(Page):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -159,7 +152,7 @@ class ResultsWaitPage(WaitPage):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.Remove == 0
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
     after_all_players_arrive = SetPrelimPayoffs
 
@@ -168,7 +161,7 @@ class PreliminaryResults(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.Remove == 0
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
     
 
@@ -176,23 +169,18 @@ class InformationScreen(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.Remove == 0
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
     def vars_for_template(player: Player):
         return dict(
             other_players=player.get_others_in_group()
         )
 
-    def before_next_page(player: Player, timeout_happened):
-        if player.Remove == 0:
-            player.participant.vars['WTL'] = False
-        else: 
-            player.participant.vars['WTL'] = True
     
 class WaitTooLong(Page):
     @staticmethod
     def is_displayed(player: Player):
-        return player.Remove == 1
+        return player.participant.vars['WTL'] == True
 
 
 page_sequence = [GroupingWaitPage,
