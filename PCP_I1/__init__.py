@@ -164,7 +164,7 @@ class InstructionsPage1_4(Page):
                 return errors
     
     def before_next_page(player: Player, timeout_happened):
-        player.participant.vars['wait_arrival_time'] = time.time()
+        player.participant.vars['wait_page_arrival_time'] = time.time()
         if player.keep == 1:
             player.participant.vars['boot'] = True
         else: 
