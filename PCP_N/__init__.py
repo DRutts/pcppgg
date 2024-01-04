@@ -104,12 +104,12 @@ class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
     def group_by_arrival_time_method(subsession, waiting_players):
         for player in waiting_players: 
-            player.participant.vars['WTL'] = False
+            player.Remove = 0
         if len(waiting_players) >= 4:
             return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
         for player in waiting_players:
             if waiting_too_long(player):
-                player.participant.vars['WTL'] = True
+                player.Remove = 1
                 return[player]
 
     after_all_players_arrive = ShuffleID
@@ -175,6 +175,11 @@ class InformationScreen(Page):
         return dict(
             other_players=player.get_others_in_group()
         )
+    def before_next_page(player: Player, timeout_happened):
+        if player.Remove == 0:
+            player.participant.vars['WTL'] = False
+        else: 
+            player.participant.vars['WTL'] = True
 
     
 class WaitTooLong(Page):
