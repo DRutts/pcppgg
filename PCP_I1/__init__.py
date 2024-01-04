@@ -40,7 +40,7 @@ class Player(BasePlayer):
     TimeoutCapthca1 = models.BooleanField(initial = False)
     TimeoutCapthca2 = models.BooleanField(initial = False)
     Q1_1 = models.IntegerField(
-        label = 'Each member of the group has an endowment of 20 tokens. Suppose that you contribute 8 tokens to the project and suppose that the other group members contribute a total of 22 tokens to the project. What is your total income?'
+        label = 'Each member of the group has an endowment of 20 tokens. Suppose that you contribute 8 tokens to the project and suppose that the other group members contribute a total of 22 tokens to the project. What is your TOTAL earnings from the round?'
     )
     num_failed_attempts_1 = models.IntegerField(initial=0)
 
