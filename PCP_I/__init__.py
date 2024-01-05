@@ -268,6 +268,10 @@ class RevisedResults(Page):
         return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 
+class WaitTooLong(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.Remove == 1
 
 
 page_sequence = [InstructionsWaitPage,
