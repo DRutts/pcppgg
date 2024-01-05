@@ -15,7 +15,8 @@ class C(BaseConstants):
     MULTIPLIER = 1.6
     PLAYERS_PER_GROUP = 4
     NUM_ROUNDS = 10
-    ENDOWMENT = 25
+    ENDOWMENT_N = 20
+    ENDOWMENT_P = 25
     PUNISHMENT_MULTIPLIER = 3
     MAX_PUNISHMENT = 10
     
