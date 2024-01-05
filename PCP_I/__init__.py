@@ -203,16 +203,43 @@ class Inter_RoundWaitPage_N(WaitPage):
     body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number >= 2 and player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number >= 2 and player.round_number <=10 and player.participant.vars['boot'] == False and player.Remove == 0
 
-class ContributionPage(Page):
+
+
+class Inter_RoundWaitPage_P(WaitPage):
+    after_all_players_arrive = ShuffleID
+    body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number >= 12 and player.participant.vars['boot'] == False and player.Remove == 0
+
+
+
+class ContributionPage_N(Page):
     form_model = "player"
     form_fields = ["Contribution"]
     timeout_seconds = 60
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
+    
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.Contribution = random.randint(0,20)
+            player.Timeout_C = 1
+
+
+
+class ContributionPage_P(Page):
+    form_model = "player"
+    form_fields = ["Contribution"]
+    timeout_seconds = 60
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
     
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -226,27 +253,43 @@ class ResultsWaitPage(WaitPage):
     after_all_players_arrive = SetPrelimPayoffs
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.participant.vars['boot'] == False and player.Remove == 0
+
 
 
 class PreliminaryResults(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.participant.vars['boot'] == False and player.Remove == 0
     
 
-class InformationScreen(Page):
+
+class InformationScreen_N(Page):
     timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
 
     def vars_for_template(player: Player):
         return dict(
             other_players=player.get_others_in_group(),
         )
-    
+
+
+
+class InformationScreen_P(Page):
+    timeout_seconds = 30
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
+
+    def vars_for_template(player: Player):
+        return dict(
+            other_players=player.get_others_in_group(),
+        )
+
+
 
 class PunishmentPage(Page):
     form_model = 'player'
@@ -255,7 +298,7 @@ class PunishmentPage(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
     
     def vars_for_template(player: Player):
         return dict(
@@ -270,19 +313,24 @@ class PunishmentPage(Page):
             player.PunishmentTo4 = 0
             player.Timeout_P = 1
 
+
+
 class PunishmentWaitPage(WaitPage):
     after_all_players_arrive = SetRevisedPayoffs
     body_text = "Please wait for the other players to join. The waiting time will take at most 3 minutes."
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
+
+
 
 class RevisedResults(Page):
     timeout_seconds = 30
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
+
 
 
 class WaitTooLong(Page):
@@ -291,7 +339,8 @@ class WaitTooLong(Page):
         return player.Remove == 1
 
 
-page_sequence = [InstructionsWaitPage,
+page_sequence = [GroupingWaitPage,
+                 InstructionsWaitPage,
                  Inter_RoundWaitPage,
                  ContributionPage, 
                  ResultsWaitPage, 
