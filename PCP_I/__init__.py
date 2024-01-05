@@ -14,7 +14,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'PCP_P'
     MULTIPLIER = 1.6
     PLAYERS_PER_GROUP = 4
-    NUM_ROUNDS = 10
+    NUM_ROUNDS = 20
     ENDOWMENT_N = 20
     ENDOWMENT_P = 25
     PUNISHMENT_MULTIPLIER = 3
@@ -115,7 +115,7 @@ def SetPrelimPayoffs_N(group: Group):
         p.PreliminaryPayoff = C.ENDOWMENT_N - p.Contribution + group.Rounded_PGEarnings
 
 
-def SetPrelimPayoffs_{(group: Group):
+def SetPrelimPayoffs_P{(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
     group.TotalContribution = sum(contributions)
@@ -248,12 +248,21 @@ class ContributionPage_P(Page):
 
 
 
-class ResultsWaitPage(WaitPage):
+class ResultsWaitPage_N(WaitPage):
     body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
-    after_all_players_arrive = SetPrelimPayoffs
+    after_all_players_arrive = SetPrelimPayoffs_N
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.Remove == 0
+        return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
+
+
+
+class ResultsWaitPage_P(WaitPage):
+    body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."
+    after_all_players_arrive = SetPrelimPayoffs_P
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
 
 
 
@@ -340,12 +349,18 @@ class WaitTooLong(Page):
 
 
 page_sequence = [GroupingWaitPage,
+                 InstructionsPage2_1,
+                 InstructionsPage2_2,
                  InstructionsWaitPage,
-                 Inter_RoundWaitPage,
-                 ContributionPage, 
+                 Inter_RoundWaitPage_N,
+                 Inter_RoundWaitPage_P,
+                 ContributionPage_N, 
+                 ContributionPage_P,
                  ResultsWaitPage, 
                  PreliminaryResults,
-                 InformationScreen,
+                 InformationScreen_N,
+                 InformationScreen_P,
                  PunishmentPage, 
                  PunishmentWaitPage, 
-                 RevisedResults]
+                 RevisedResults,
+                 WaitTooLong]
