@@ -54,7 +54,7 @@ class InstructionsPage2_1(Page):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False 
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 
 class InstructionsPage2_2(Page):
@@ -65,7 +65,7 @@ class InstructionsPage2_2(Page):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
     @staticmethod
     def error_message(player: Player, values):
