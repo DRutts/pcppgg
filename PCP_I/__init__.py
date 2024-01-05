@@ -24,7 +24,15 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def group_by_arrival_time_method(subsession, waiting_players):
+        for player in waiting_players: 
+            player.Remove = 0
+        if len(waiting_players) >= 4:
+            return [waiting_players[0], waiting_players[1], waiting_players[2], waiting_players[3]]
+        for player in waiting_players:
+            if player.waiting_too_long():
+                player.Remove = 1
+                return[player]
 
 
 class Group(BaseGroup):
@@ -38,6 +46,7 @@ def make_punishment_field(id_in_group):
         )
 
 class Player(BasePlayer):
+    Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
@@ -82,7 +91,7 @@ def GetPID(player: Player):
 def Punishment_Fields(player: Player):
     return ['PunishmentTo{}'.format(p.DispID) for p in player.get_others_in_group()]
 
-def SetPrelimPayoffs(group: Group):
+def SetPrelimPayoffs_N(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
     group.TotalContribution = sum(contributions)
@@ -92,14 +101,24 @@ def SetPrelimPayoffs(group: Group):
     for p in players:
 
         PID = GetPID(p) 
-        p.ContributionPercentage = p.Contribution/C.ENDOWMENT * 100
-        p.RetainedEndowment = C.ENDOWMENT - p.Contribution
-        p.PreliminaryPayoff = C.ENDOWMENT - p.Contribution + group.Rounded_PGEarnings
+        p.ContributionPercentage = p.Contribution/C.ENDOWMENT_N * 100
+        p.RetainedEndowment = C.ENDOWMENT_N - p.Contribution
+        p.PreliminaryPayoff = C.ENDOWMENT_N - p.Contribution + group.Rounded_PGEarnings
 
 
-    
+def SetPrelimPayoffs_{(group: Group):
+    players = group.get_players()
+    contributions = [p.Contribution for p in players]
+    group.TotalContribution = sum(contributions)
+    group.PGEarnings = group.TotalContribution * C.MULTIPLIER / C.PLAYERS_PER_GROUP
+    group.Rounded_PGEarnings = round(group.PGEarnings, 2)
 
+    for p in players:
 
+        PID = GetPID(p) 
+        p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
+        p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
+        p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
 
 
 def SetRevisedPayoffs(group: Group):
