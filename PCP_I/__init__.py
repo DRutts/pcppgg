@@ -148,13 +148,25 @@ def SetRevisedPayoffs(group: Group):
 #       PAGE PART
 # ======================
 
+class GroupingWaitPage(WaitPage):
+    group_by_arrival_time = True
+
+    after_all_players_arrive = ShuffleID
+    body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page. Once you have been on the page for 15 minutes, you will be asked to return the study."
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1 and player.participant.vars['boot'] == False
+
+
+
 class InstructionsPage2_1(Page):
     timeout_seconds = 60 * 2
     
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
+
 
 
 class InstructionsPage2_2(Page):
@@ -165,7 +177,7 @@ class InstructionsPage2_2(Page):
     @staticmethod
 
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
     @staticmethod
     def error_message(player: Player, values):
@@ -174,14 +186,19 @@ class InstructionsPage2_2(Page):
         errors = {name: 'Wrong' for name in solutions if values[name] != solutions[name]}
         if errors:
             return errors
+
+
+
 class InstructionsWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 6 minutes."    
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 and player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
-class Inter_RoundWaitPage(WaitPage):
+
+
+class Inter_RoundWaitPage_N(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
     @staticmethod
