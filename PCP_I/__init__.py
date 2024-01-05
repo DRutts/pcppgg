@@ -270,7 +270,7 @@ class ResultsWaitPage_P(WaitPage):
     after_all_players_arrive = SetPrelimPayoffs_P
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
+        return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
 
 
