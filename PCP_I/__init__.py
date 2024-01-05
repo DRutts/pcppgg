@@ -11,7 +11,7 @@ Your app description
 # ======================
 
 class C(BaseConstants):
-    NAME_IN_URL = 'PCP_P'
+    NAME_IN_URL = 'PCP_I'
     MULTIPLIER = 1.6
     PLAYERS_PER_GROUP = 4
     NUM_ROUNDS = 20
