@@ -298,6 +298,12 @@ class InformationScreen_P(Page):
             other_players=player.get_others_in_group(),
         )
 
+    def before_next_page(player: Player, timeout_happened):
+        if player.Remove == 0:
+            player.participant.vars['WTL'] = False
+        else: 
+            player.participant.vars['WTL'] = True
+
 
 
 class PunishmentPage(Page):
