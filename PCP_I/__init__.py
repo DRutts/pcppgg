@@ -148,6 +148,32 @@ def SetRevisedPayoffs(group: Group):
 #       PAGE PART
 # ======================
 
+class InstructionsPage2_1(Page):
+    timeout_seconds = 60 * 2
+    
+    @staticmethod
+
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+
+
+class InstructionsPage2_2(Page):
+    form_model = "player"
+    form_fields = ["Q2_1", "Q2_2"]
+    timeout_seconds = 60 * 3
+    
+    @staticmethod
+
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+
+    @staticmethod
+    def error_message(player: Player, values):
+        solutions = dict(Q2_1=14,
+                         Q2_2=12)
+        errors = {name: 'Wrong' for name in solutions if values[name] != solutions[name]}
+        if errors:
+            return errors
 class InstructionsWaitPage(WaitPage):
     after_all_players_arrive = ShuffleID
     body_text = "Please wait for the other players to join. The waiting time will take at most 6 minutes."    
