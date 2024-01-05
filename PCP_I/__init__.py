@@ -94,11 +94,17 @@ def ShuffleID(group: Group):
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
 
+
+
 def GetPID(player: Player):
     return 'PunishmentTo{}'.format(player.DispID)
 
+
+
 def Punishment_Fields(player: Player):
     return ['PunishmentTo{}'.format(p.DispID) for p in player.get_others_in_group()]
+
+
 
 def SetPrelimPayoffs_N(group: Group):
     players = group.get_players()
@@ -115,6 +121,7 @@ def SetPrelimPayoffs_N(group: Group):
         p.PreliminaryPayoff = C.ENDOWMENT_N - p.Contribution + group.Rounded_PGEarnings
 
 
+
 def SetPrelimPayoffs_P(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
@@ -128,6 +135,7 @@ def SetPrelimPayoffs_P(group: Group):
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
         p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
+
 
 
 def SetRevisedPayoffs(group: Group):
