@@ -42,7 +42,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    Remove = models.IntegerField()
+    Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
