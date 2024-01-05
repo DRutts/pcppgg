@@ -115,7 +115,7 @@ def SetPrelimPayoffs_N(group: Group):
         p.PreliminaryPayoff = C.ENDOWMENT_N - p.Contribution + group.Rounded_PGEarnings
 
 
-def SetPrelimPayoffs_P{(group: Group):
+def SetPrelimPayoffs_P(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
     group.TotalContribution = sum(contributions)
