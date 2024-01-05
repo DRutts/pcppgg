@@ -1,0 +1,17 @@
+{{ block title }}
+    Completion Page
+{{ endblock }}
+
+{{ block content }}
+
+    <p>
+        Thank you for participating in the study!
+        At this time, not enough players are currently active to form a group.
+        We may contact you for future iterations. Please return the study. https://app.prolific.com/submissions/complete?cc=CHB7XV2Q
+    </p>
+    <p>
+        The completion code is CHB7XV2Q.
+    </p>
+
+
+{{ endblock }}
