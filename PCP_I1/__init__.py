@@ -31,7 +31,7 @@ class Player(BasePlayer):
             label = '',
             widget=widgets.RadioSelect
         )
-    keep = models.IntegerField(initial = 0)
+    keep = models.IntegerField()
     prolificID = models.StringField(min_length = 1, max_length = 200)
     captcha1 = models.StringField(max_length = 200)
     captcha2 = models.StringField(max_length = 200)
