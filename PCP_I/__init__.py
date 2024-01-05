@@ -200,7 +200,7 @@ class InstructionsWaitPage(WaitPage):
 
 class Inter_RoundWaitPage_N(WaitPage):
     after_all_players_arrive = ShuffleID
-    body_text = "Please wait for the other players to join. The waiting time will take at most 30 seconds."    
+    body_text = "Please wait for the other players to join. The waiting time will take at most 1 minute."    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number >= 2 and player.round_number <=10 and player.participant.vars['boot'] == False and player.Remove == 0
@@ -362,7 +362,8 @@ page_sequence = [GroupingWaitPage,
                  Inter_RoundWaitPage_P,
                  ContributionPage_N, 
                  ContributionPage_P,
-                 ResultsWaitPage, 
+                 ResultsWaitPage_N, 
+                 ResultsWaitPage_P, 
                  PreliminaryResults,
                  InformationScreen_N,
                  InformationScreen_P,
