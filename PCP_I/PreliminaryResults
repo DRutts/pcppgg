@@ -1,0 +1,27 @@
+{{ block title }}Results  - Round {{ player.round_number }}{{ endblock }}
+{{ block content }}
+
+    <p>
+        Your contribution to the project is {{ player.Contribution }} token(s).
+        
+    </p>
+    <p>
+        The sum of contributions is {{ group.TotalContribution }} token(s).
+        
+    </p>
+    <p>
+        You retained {{ player.RetainedEndowment }} token(s) from your endowment.
+        
+    </p>
+    <p>
+        You received {{ group.Rounded_PGEarnings }} token(s) from the project.
+        
+    </p>
+    <p>
+        Your total income in this round is {{ player.PreliminaryPayoff }} tokens.
+        
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}
