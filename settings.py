@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
     dict(
         name='PGG_Experiment',
         display_name="Public Good",
-        app_sequence=['PCP_I1', 'PCP_N', 'PCP_I2', 'PCP_P', 'PCP_Q'],
+        app_sequence=['PCP_I1', 'PCP_I', 'PCP_Q'],
         num_demo_participants=4,
     )
 
