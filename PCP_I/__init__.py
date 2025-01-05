@@ -354,6 +354,11 @@ class RevisedResults(Page):
     def is_displayed(player: Player):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
+class PunishmentReason(Page):
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 20 and player.participant.vars['boot'] == False and player.Remove == 0
 
 
 class WaitTooLong(Page):
@@ -378,4 +383,5 @@ page_sequence = [GroupingWaitPage,
                  PunishmentPage, 
                  PunishmentWaitPage, 
                  RevisedResults,
+                 PunishmentReason
                  WaitTooLong]
