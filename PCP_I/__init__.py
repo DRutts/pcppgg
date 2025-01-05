@@ -68,6 +68,7 @@ class Player(BasePlayer):
     RevisedPayoff = models.FloatField()
     Rounded_RevisedPayoff = models.FloatField()
     RandomRound = models.IntegerField()
+    ElicitedDispID = models.IntegerField()
     ElicitedCont1 = models.IntegerField()
     ElicitedCont2 = models.IntegerField()
     ElicitedCont3 = models.IntegerField()
@@ -392,20 +393,13 @@ class RevisedResults(Page):
 
     def before_next_page(player, timeout_happened):
         if player.round_number == player.RandomRound:
-
+            player.ElicitedDispID = player.DispID
+            player.ElicitedPunishmentTo1 = player.PunishmentTo1
+            player.ElicitedPunishmentTo2 = player.PunishmentTo2
+            player.ElicitedPunishmentTo3 = player.PunishmentTo3
+            player.ElicitedPunishmentTo4 = player.PunishmentTo4
+            
     
-class PunishmentReasonTransition(Page):
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 20 and player.participant.vars['boot'] == False and player.Remove == 0
-        
-    def before_next_page(player, timeout_happened):
-        prev_player = player.in_round(player.RandomRound)
-        ElicitedPunishmentTo1 = prev_player.PunishmentTo1 
-        ElicitedPunishmentTo2 = prev_player.PunishmentTo2
-        ElicitedPunishmentTo3 = prev_player.PunishmentTo3
-        ElicitedPunishmentTo4 = prev_player.PunishmentTo4   
 
 
 class PunishmentReason(Page):
@@ -437,6 +431,5 @@ page_sequence = [GroupingWaitPage,
                  PunishmentPage, 
                  PunishmentWaitPage, 
                  RevisedResults,
-                 PunishmentReasonTransition,
                  PunishmentReason,
                  WaitTooLong]
