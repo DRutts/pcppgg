@@ -314,9 +314,6 @@ class PreliminaryResults(Page):
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.Remove == 0
 
-    def before_next_page(player, timeout_happened):
-        if player.round_number == player.RandomRound
-            player.participant.vars['RCont1'] = pla
 
 
 class InformationScreen_N(Page):
