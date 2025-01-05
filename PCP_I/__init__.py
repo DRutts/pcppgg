@@ -39,7 +39,7 @@ class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
     Rounded_PGEarnings = models.FloatField()
-    RandomRound = models.IntegerField()
+    
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
@@ -62,6 +62,12 @@ class Player(BasePlayer):
     PunishmentTo2 = make_punishment_field(2)
     PunishmentTo3 = make_punishment_field(3)
     PunishmentTo4 = make_punishment_field(4)
+    TotalPunishmentsFrom = models.IntegerField()
+    TotalPunishmentsTo = models.IntegerField()
+    PayoffReduction = models.IntegerField()
+    RevisedPayoff = models.FloatField()
+    Rounded_RevisedPayoff = models.FloatField()
+    RandomRound = models.IntegerField()
     ElicitedCont1 = models.IntegerField()
     ElicitedCont2 = models.IntegerField()
     ElicitedCont3 = models.IntegerField()
@@ -70,11 +76,6 @@ class Player(BasePlayer):
     ElicitedPunishmentTo2 = models.IntegerField()
     ElicitedPunishmentTo3 = models.IntegerField()
     ElicitedPunishmentTo4 = models.IntegerField()
-    TotalPunishmentsFrom = models.IntegerField()
-    TotalPunishmentsTo = models.IntegerField()
-    PayoffReduction = models.IntegerField()
-    RevisedPayoff = models.FloatField()
-    Rounded_RevisedPayoff = models.FloatField()
     Q2_1 = models.IntegerField(
         label = 'Suppose that, in the second phase, you send 9, 5, and 0 deduction points to the other three players, respectively. What is the total cost of the deduction points you sent?'
     )
@@ -91,6 +92,20 @@ class Player(BasePlayer):
 #    CALCULATION PART
 # ======================
 
+def SetID(group: Group):
+    players = group.get_players()
+    IDList = [1, 2, 3, 4]
+    P1id = IDList.pop(random.randint(0,3))
+    P2id = IDList.pop(random.randint(0,2))
+    P3id = IDList.pop(random.randint(0,1))
+    P4id = IDList[0]
+    DispIDList = [P1id, P2id, P3id, P4id]
+    
+    for p in players:
+        p.DispID = DispIDList[p.id_in_group - 1]
+        p.RandomRound = random.randint(11,20)
+
+
 def ShuffleID(group: Group):
     players = group.get_players()
     IDList = [1, 2, 3, 4]
@@ -102,16 +117,6 @@ def ShuffleID(group: Group):
     
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
-
-def RandomRoundElicit(group: Group):
-    random.randint(11,20)
-
-def GetConts(group: Group):
-    players = group.get_players()
-    contributions = [p.Contribution for p in players]
-    
-    for p in players:
-        
 
 
 
@@ -155,7 +160,7 @@ def SetPrelimPayoffs_P(group: Group):
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
         p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
-        if p.round_number == group.RandomRound:
+        if p.round_number == player.RandomRound:
             p.ElicitedCont1 = contributions[0]
             p.ElicitedCont2 = contributions[1]
             p.ElicitedCont3 = contributions[2]
@@ -184,7 +189,7 @@ def SetRevisedPayoffs(group: Group):
 class GroupingWaitPage(WaitPage):
     group_by_arrival_time = True
 
-    after_all_players_arrive = ShuffleID
+    after_all_players_arrive = SetID
     body_text = "Please wait for the other players to join. You will be organized into a group of 4 once enough players have arrived. This may take several minutes. If you have been on the page for more than 5 minutes, refresh the page. Once you have been on the page for 15 minutes, you will be asked to return the study."
     @staticmethod
     def is_displayed(player: Player):
@@ -385,7 +390,10 @@ class RevisedResults(Page):
     def is_displayed(player: Player):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
+    def before_next_page(player, timeout_happened):
+        if player.round_number == player.RandomRound:
 
+    
 class PunishmentReasonTransition(Page):
 
     @staticmethod
@@ -398,6 +406,7 @@ class PunishmentReasonTransition(Page):
         ElicitedPunishmentTo2 = prev_player.PunishmentTo2
         ElicitedPunishmentTo3 = prev_player.PunishmentTo3
         ElicitedPunishmentTo4 = prev_player.PunishmentTo4   
+
 
 class PunishmentReason(Page):
 
