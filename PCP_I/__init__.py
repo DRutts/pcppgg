@@ -39,6 +39,7 @@ class Group(BaseGroup):
     TotalContribution = models.IntegerField()
     PGEarnings = models.FloatField()
     Rounded_PGEarnings = models.FloatField()
+    RandomRound = models.IntegerField()
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
@@ -61,6 +62,10 @@ class Player(BasePlayer):
     PunishmentTo2 = make_punishment_field(2)
     PunishmentTo3 = make_punishment_field(3)
     PunishmentTo4 = make_punishment_field(4)
+    ElicitedPunishmentTo1 = models.IntegerField()
+    ElicitedPunishmentTo2 = models.IntegerField()
+    ElicitedPunishmentTo3 = models.IntegerField()
+    ElicitedPunishmentTo4 = models.IntegerField()
     TotalPunishmentsFrom = models.IntegerField()
     TotalPunishmentsTo = models.IntegerField()
     PayoffReduction = models.IntegerField()
@@ -94,7 +99,8 @@ def ShuffleID(group: Group):
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
 
-
+def RandomRoundElicit(group: Group):
+    random.randint(11,20)
 
 def GetPID(player: Player):
     return 'PunishmentTo{}'.format(player.DispID)
@@ -354,6 +360,20 @@ class RevisedResults(Page):
     def is_displayed(player: Player):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
+
+class PunishmentReasonTransition(Page):
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 20 and player.participant.vars['boot'] == False and player.Remove == 0
+        
+    def before_next_page(player, timeout_happened):
+        prev_player = player.in_round(player.RandomRound)
+        ElicitedPunishmentTo1 = prev_player.PunishmentTo1 
+        ElicitedPunishmentTo2 = prev_player.PunishmentTo2
+        ElicitedPunishmentTo3 = prev_player.PunishmentTo3
+        ElicitedPunishmentTo4 = prev_player.PunishmentTo4   
+
 class PunishmentReason(Page):
 
     @staticmethod
@@ -383,5 +403,6 @@ page_sequence = [GroupingWaitPage,
                  PunishmentPage, 
                  PunishmentWaitPage, 
                  RevisedResults,
-                 PunishmentReason
+                 PunishmentReasonTransition,
+                 PunishmentReason,
                  WaitTooLong]
