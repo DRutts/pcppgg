@@ -62,6 +62,10 @@ class Player(BasePlayer):
     PunishmentTo2 = make_punishment_field(2)
     PunishmentTo3 = make_punishment_field(3)
     PunishmentTo4 = make_punishment_field(4)
+    ElicitedCont1 = models.IntegerField()
+    ElicitedCont2 = models.IntegerField()
+    ElicitedCont3 = models.IntegerField()
+    ElicitedCont4 = models.IntegerField()
     ElicitedPunishmentTo1 = models.IntegerField()
     ElicitedPunishmentTo2 = models.IntegerField()
     ElicitedPunishmentTo3 = models.IntegerField()
@@ -101,6 +105,18 @@ def ShuffleID(group: Group):
 
 def RandomRoundElicit(group: Group):
     random.randint(11,20)
+
+def GetConts(group: Group):
+    players = group.get_players()
+    contributions = [p.Contribution for p in players]
+    
+    for p in players:
+        p.ElicitedCont1 = contributions[0]
+        p.ElicitedCont2 = contributions[1]
+        p.ElicitedCont3 = contributions[2]
+        p.ElicitedCont4 = contributions[3]
+
+
 
 def GetPID(player: Player):
     return 'PunishmentTo{}'.format(player.DispID)
@@ -256,6 +272,9 @@ class ContributionPage_P(Page):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
     
     def before_next_page(player, timeout_happened):
+        if player.round_number == player.RandomRound
+            
+        
         if timeout_happened:
             player.Contribution = random.randint(0,20)
             player.Timeout_C = 1
@@ -285,7 +304,10 @@ class PreliminaryResults(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.Remove == 0
-    
+
+    def before_next_page(player, timeout_happened):
+        if player.round_number == player.RandomRound
+            player.participant.vars['RCont1'] = pla
 
 
 class InformationScreen_N(Page):
