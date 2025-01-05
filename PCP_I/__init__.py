@@ -111,10 +111,7 @@ def GetConts(group: Group):
     contributions = [p.Contribution for p in players]
     
     for p in players:
-        p.ElicitedCont1 = contributions[0]
-        p.ElicitedCont2 = contributions[1]
-        p.ElicitedCont3 = contributions[2]
-        p.ElicitedCont4 = contributions[3]
+        
 
 
 
@@ -144,6 +141,7 @@ def SetPrelimPayoffs_N(group: Group):
 
 
 
+
 def SetPrelimPayoffs_P(group: Group):
     players = group.get_players()
     contributions = [p.Contribution for p in players]
@@ -157,7 +155,11 @@ def SetPrelimPayoffs_P(group: Group):
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
         p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
-
+        if p.round_number == group.RandomRound:
+            p.ElicitedCont1 = contributions[0]
+            p.ElicitedCont2 = contributions[1]
+            p.ElicitedCont3 = contributions[2]
+            p.ElicitedCont4 = contributions[3]
 
 
 def SetRevisedPayoffs(group: Group):
