@@ -1,1 +1,39 @@
+{{ block title }}Second Stage - Round {{ player.round_number }}{{ endblock }}
+{{ block content }}
 
+    <p>
+        You are Player {{ player.DispID }}. You contributed {{ player.Contribution }} token(s).
+        Here are the other players' contributions:
+    </p>
+        <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Endowment</th>
+            <th>Contribution</th>
+            <th>Contribution in percentage of the endowment</th>
+
+        </tr>
+        <tr>
+            <td>You</td>
+            <td>{{ C.ENDOWMENT_P }}</td>
+            <td>{{ player.Contribution }}</td>
+            <td>{{ player.ContributionPercentage }}</td>
+
+        </tr>
+        {{ for p in other_players }}
+            <tr>
+                <td>Player {{ p.DispID }}</td>
+                <td>{{ C.ENDOWMENT_P }}</td>
+                <td>{{ p.Contribution }}</td>
+                <td>{{ p.ContributionPercentage }}</td>
+            </tr>
+        {{ endfor }}
+    </table>
+
+
+    {{ formfields }}
+
+
+    {{ next_button }}
+
+{{ endblock }}
