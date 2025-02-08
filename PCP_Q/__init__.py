@@ -123,7 +123,7 @@ class Transition(Page):
         player.EPun4 = player.participant.vars['EPun4']
 
 
-class PunishmentReasonP1(Page):
+class PunishmentReason(Page):
     form_model = 'player'
     form_fields = ['PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
     @staticmethod
