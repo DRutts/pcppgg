@@ -400,7 +400,6 @@ class RevisedResults(Page):
             player.participant.vars['EPun3'] = player.PunishmentTo3
             player.participant.vars['EPun4'] = player.PunishmentTo4
             
-    
 
 
 class PunishmentReason(Page):
