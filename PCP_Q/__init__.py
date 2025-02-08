@@ -101,6 +101,19 @@ class Transition(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        
+    def before_next_page(player, timeout_happened):
+        player.RandomRound = player.participant.vars['randomround']
+        player.EDispID = player.participant.vars['EDispID']
+        player.ECont1 = player.participant.vars['ECont1']
+        player.ECont2 = player.participant.vars['ECont2']
+        player.ECont3 = player.participant.vars['ECont3']
+        player.ECont4 = player.participant.vars['ECont4']
+        player.EPun1 = player.participant.vars['EPun1']
+        player.EPun2 = player.participant.vars['EPun2']
+        player.EPun3 = player.participant.vars['EPun3']
+        player.EPun4 = player.participant.vars['EPun4']
+
 
 class PunishmentReason(Page):
     @staticmethod
