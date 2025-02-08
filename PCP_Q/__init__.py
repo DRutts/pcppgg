@@ -87,6 +87,12 @@ class Player(BasePlayer):
 # ======================
 
 
+class PunishmentReason(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+
+
 class Questionnaire(Page):
     form_model = 'player'
     form_fields = ['QQ1', 'QQ2', 'QQ3', 'QQ4', 'QQ5', 'QQ6', 'QQ7', 'QQ8']
@@ -109,6 +115,7 @@ class Completion(Page):
         return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
 
-page_sequence = [Questionnaire,
+page_sequence = [PunishmentReason,
+                 Questionnaire,
                  Questionnaire2,
                  Completion]
