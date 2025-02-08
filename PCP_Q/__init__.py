@@ -24,16 +24,16 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    RandomRound = models.IntegerField
-    EDispID = models.IntegerField
-    ECont1 = models.IntegerField
-    ECont2 = models.IntegerField
-    ECont3 = models.IntegerField
-    ECont4 = models.IntegerField
-    EPun1 = models.IntegerField
-    EPun2 = models.IntegerField
-    EPun3 = models.IntegerField
-    EPun4 = models.IntegerField
+    RandomRound = models.IntegerField()
+    EDispID = models.IntegerField()
+    ECont1 = models.IntegerField()
+    ECont2 = models.IntegerField()
+    ECont3 = models.IntegerField()
+    ECont4 = models.IntegerField()
+    EPun1 = models.IntegerField()
+    EPun2 = models.IntegerField()
+    EPun3 = models.IntegerField()
+    EPun4 = models.IntegerField()
     
     QQ1 = models.IntegerField(
         min=0, label='1) What is your age?'
