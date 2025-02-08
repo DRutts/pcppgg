@@ -77,10 +77,10 @@ class Player(BasePlayer):
     ElicitedPunishmentTo2 = models.IntegerField()
     ElicitedPunishmentTo3 = models.IntegerField()
     ElicitedPunishmentTo4 = models.IntegerField()
-    PunishmentReason1 = models.CharacterField()
-    PunishmentReason2 = models.CharacterField()
-    PunishmentReason3 = models.CharacterField()
-    PunishmentReason4 = models.CharacterField()
+    PunishmentReason1 = models.StringField()
+    PunishmentReason2 = models.StringField()
+    PunishmentReason3 = models.StringField()
+    PunishmentReason4 = models.StringField()
     Q2_1 = models.IntegerField(
         label = 'Suppose that, in the second phase, you send 9, 5, and 0 deduction points to the other three players, respectively. What is the total cost of the deduction points you sent?'
     )
