@@ -143,7 +143,6 @@ def SetPrelimPayoffs_N(group: Group):
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
 
     for p in players:
-
         PID = GetPID(p) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_N * 100
         p.RetainedEndowment = C.ENDOWMENT_N - p.Contribution
@@ -160,12 +159,11 @@ def SetPrelimPayoffs_P(group: Group):
     group.Rounded_PGEarnings = round(group.PGEarnings, 2)
 
     for p in players:
-
         PID = GetPID(p) 
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
         p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
-        if p.round_number == p.RandomRound:
+        if p.round_number == p.participant.vars['randomround']:
             p.ElicitedCont1 = contributions[0]
             p.ElicitedCont2 = contributions[1]
             p.ElicitedCont3 = contributions[2]
@@ -284,9 +282,6 @@ class ContributionPage_P(Page):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
     
     def before_next_page(player, timeout_happened):
-
-            
-        
         if timeout_happened:
             player.Contribution = random.randint(0,20)
             player.Timeout_C = 1
@@ -396,6 +391,10 @@ class RevisedResults(Page):
     def before_next_page(player, timeout_happened):
         if player.round_number == player.participant.vars['randomround']:
             player.participant.vars['EDispID'] = player.DispID
+            player.participant.vars['ECont1'] = player.ElicitedCont1
+            player.participant.vars['ECont2'] = player.ElicitedCont2
+            player.participant.vars['ECont3'] = player.ElicitedCont3
+            player.participant.vars['ECont4'] = player.ElicitedCont4
             player.participant.vars['EPun1'] = player.PunishmentTo1
             player.participant.vars['EPun2'] = player.PunishmentTo2
             player.participant.vars['EPun3'] = player.PunishmentTo3
