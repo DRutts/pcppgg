@@ -128,7 +128,7 @@ class PunishmentReason(Page):
     form_fields = ['PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.EDispID == 1
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
 
 class PunishmentReasonP2(Page):
     form_model = 'player'
