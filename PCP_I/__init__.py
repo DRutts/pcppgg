@@ -404,8 +404,6 @@ class RevisedResults(Page):
 
 
 class PunishmentReason(Page):
-    form_model = 'player'
-    get_form_fields = Punishment_Reason_Fields
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 20 and player.participant.vars['boot'] == False and player.Remove == 0
