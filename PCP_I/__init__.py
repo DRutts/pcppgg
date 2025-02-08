@@ -313,7 +313,7 @@ class PreliminaryResults(Page):
         return player.participant.vars['boot'] == False and player.Remove == 0
     def before_next_page(player, timeout_happened):
         if player.round_number == 1:
-            player.participant.vars['randomround'] == player.RandomRound
+            player.participant.vars['randomround'] = player.RandomRound
 
 
 class InformationScreen_N(Page):
