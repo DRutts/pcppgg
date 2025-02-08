@@ -394,12 +394,12 @@ class RevisedResults(Page):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
     def before_next_page(player, timeout_happened):
-        if player.round_number == player.RandomRound:
-            player.ElicitedDispID = player.DispID
-            player.ElicitedPunishmentTo1 = player.PunishmentTo1
-            player.ElicitedPunishmentTo2 = player.PunishmentTo2
-            player.ElicitedPunishmentTo3 = player.PunishmentTo3
-            player.ElicitedPunishmentTo4 = player.PunishmentTo4
+        if player.round_number == player.participant.vars['randomround']:
+            player.participant.vars['EDispID'] = player.DispID
+            player.participant.vars['EPun1'] = player.PunishmentTo1
+            player.participant.vars['EPun2'] = player.PunishmentTo2
+            player.participant.vars['EPun3'] = player.PunishmentTo3
+            player.participant.vars['EPun4'] = player.PunishmentTo4
             
     
 
