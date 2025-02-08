@@ -123,12 +123,33 @@ class Transition(Page):
         player.EPun4 = player.participant.vars['EPun4']
 
 
-class PunishmentReason(Page):
+class PunishmentReasonP1(Page):
     form_model = 'player'
-    form_fields = ['PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
+    form_fields = ['PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.EDispID == 1
+
+class PunishmentReasonP2(Page):
+    form_model = 'player'
+    form_fields = ['PunishmentReason1', 'PunishmentReason3', 'PunishmentReason4']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.EDispID == 2
+
+class PunishmentReasonP3(Page):
+    form_model = 'player'
+    form_fields = ['PunishmentReason1', 'PunishmentReason2', 'PunishmentReason4']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.EDispID == 3
+
+class PunishmentReasonP4(Page):
+    form_model = 'player'
+    form_fields = ['PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.EDispID == 4
 
 
 class Questionnaire(Page):
