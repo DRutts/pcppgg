@@ -200,7 +200,7 @@ class GroupingWaitPage(WaitPage):
     def is_displayed(player: Player):
         return player.round_number == 1 and player.participant.vars['boot'] == False
 
-
+    
 
 class InstructionsPage2_1(Page):
     timeout_seconds = 60 * 2
@@ -209,7 +209,6 @@ class InstructionsPage2_1(Page):
 
     def is_displayed(player: Player):
         return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
-
 
 
 class InstructionsPage2_2(Page):
@@ -317,7 +316,9 @@ class PreliminaryResults(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.Remove == 0
-
+    def before_next_page(player, timeout_happened):
+        if player.round_number == 1:
+            player.participant.vars['randomround'] == player.RandomRound
 
 
 class InformationScreen_N(Page):
