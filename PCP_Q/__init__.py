@@ -143,7 +143,8 @@ class Completion(Page):
         return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
     
 
-page_sequence = [PunishmentReason,
+page_sequence = [Transition,
+                 PunishmentReason,
                  Questionnaire,
                  Questionnaire2,
                  Completion]
