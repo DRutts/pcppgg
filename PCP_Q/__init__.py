@@ -34,10 +34,14 @@ class Player(BasePlayer):
     EPun2 = models.IntegerField()
     EPun3 = models.IntegerField()
     EPun4 = models.IntegerField()
-    PunishmentReason1 = models.StringField(min_length = 10, max_length = 300)
-    PunishmentReason2 = models.StringField(min_length = 10, max_length = 300)
-    PunishmentReason3 = models.StringField(min_length = 10, max_length = 300)
-    PunishmentReason4 = models.StringField(min_length = 10, max_length = 300)
+    PunishmentReason1 = models.StringField(min_length = 10, max_length = 300,
+                                          label = 'Please explain briefly why you made this decision.')
+    PunishmentReason2 = models.StringField(min_length = 10, max_length = 300,
+                                          label = 'Please explain briefly why you made this decision.')
+    PunishmentReason3 = models.StringField(min_length = 10, max_length = 300,
+                                          label = 'Please explain briefly why you made this decision.')
+    PunishmentReason4 = models.StringField(min_length = 10, max_length = 300,
+                                          label = 'Please explain briefly why you made this decision.')
     
     QQ1 = models.IntegerField(
         min=0, label='1) What is your age?'
