@@ -4,6 +4,42 @@
     <p>
         In Round {{ player.RandomRound }}, you were Player {{ player.EDispID }}. Here are the players' contributions:
     </p>
+        <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Endowment</th>
+            <th>Contribution</th>
+
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>25</td>
+            <td>{{ player.ElicitedCont1 }}</td>
+
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>25</td>
+            <td>{{ player.ElicitedCont2 }}</td>
+
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>25</td>
+            <td>{{ player.ElicitedCont3 }}</td>
+
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>25</td>
+            <td>{{ player.ElicitedCont4 }}</td>
+
+        </tr>
+
+    </table>
+
+
+    {{ formfields }}
 
 
 
