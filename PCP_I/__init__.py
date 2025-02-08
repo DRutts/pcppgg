@@ -285,7 +285,7 @@ class ContributionPage_P(Page):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
     
     def before_next_page(player, timeout_happened):
-        if player.round_number == player.RandomRound
+
             
         
         if timeout_happened:
