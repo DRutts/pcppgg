@@ -34,6 +34,10 @@ class Player(BasePlayer):
     EPun2 = models.IntegerField()
     EPun3 = models.IntegerField()
     EPun4 = models.IntegerField()
+    PunishmentReason1 = models.StringField()
+    PunishmentReason2 = models.StringField()
+    PunishmentReason3 = models.StringField()
+    PunishmentReason4 = models.StringField()
     
     QQ1 = models.IntegerField(
         min=0, label='1) What is your age?'
