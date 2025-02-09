@@ -43,6 +43,7 @@ class Player(BasePlayer):
         label = 'Each member of the group has an endowment of 20 tokens. Suppose that you contribute 8 tokens to the project and suppose that the other group members contribute a total of 22 tokens to the project. What is your TOTAL earnings from the round?'
     )
     num_failed_attempts_1 = models.IntegerField(initial=0)
+    TypeMarker = models.IntegerField(initial = 0)
 
 
 
@@ -143,6 +144,8 @@ class InstructionsPage1_3(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.keep == 0
+    def before_next_page(player: Player, timeout_happened):
+        player.TypeMarker = randint(1, 5)
 
 class InstructionsPage1_4(Page):
     form_model = "player"
@@ -167,8 +170,10 @@ class InstructionsPage1_4(Page):
         player.participant.vars['wait_page_arrival_time'] = time.time()
         if player.keep == 1:
             player.participant.vars['boot'] = True
+            player.participant.vars['type'] = player.TypeMarker
         else: 
             player.participant.vars['boot'] = False
+            player.participant.vars['type'] = 0
 
 class Elimination(Page):
     @staticmethod
