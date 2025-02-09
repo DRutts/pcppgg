@@ -145,6 +145,8 @@ class InstructionsPage1_3(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.keep == 0
+    def before_next_page(player: Player, timeout_happened):
+        AssignType
         
 
 class InstructionsPage1_4(Page):
@@ -165,8 +167,6 @@ class InstructionsPage1_4(Page):
                 player.keep = 1
             else:
                 return errors
-        else:
-            player.TypeMarker = randint(1, 5)
     
     def before_next_page(player: Player, timeout_happened):
         player.participant.vars['wait_page_arrival_time'] = time.time()
