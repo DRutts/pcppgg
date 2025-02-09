@@ -50,6 +50,7 @@ class Player(BasePlayer):
     Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
+    TypeMarker = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
     Timeout_P = models.IntegerField(initial = 0)
     Contribution = models.IntegerField(
