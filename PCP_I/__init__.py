@@ -50,6 +50,7 @@ class Player(BasePlayer):
     Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
+    TypeMarker = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
     Timeout_P = models.IntegerField(initial = 0)
     Contribution = models.IntegerField(
@@ -118,6 +119,7 @@ def SetID(group: Group):
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
         p.RandomRound = random.randint(11,20)
+        p.TypeMarker = random.randint(1, 5)
 
 
 def ShuffleID(group: Group):
@@ -216,34 +218,6 @@ def SetRevisedPayoffs(group: Group):
         p.TotalOccASP = p.OccASP1 + p.OccASP2 + p.OccASP3 + p.OccASP4
 
 
-def CalculateOppASP(group: Group):
-    players = group.get_players()
-    for p in players:
-        if p.DispID != 1 and p.Contribution <= contributions[0]:
-            p.OppASP1 = 1
-        if p.DispID != 2 and p.Contribution <= contributions[1]:
-            p.OppASP2 = 1
-        if p.DispID != 3 and p.Contribution <= contributions[2]:
-            p.OppASP3 = 1
-        if p.DispID != 4 and p.Contribution <= contributions[2]:
-            p.OppASP2 = 1
-        
-
-def CalculateOccASP(group: Group):
-    players = group.get_players()
-    for p in players:
-        if p.OppASP1 == 1 and p.PunishmentTo1 > 0:
-            p.OccASP1 = 1
-        if p.OppASP2 == 1 and p.PunishmentTo2 > 0:
-            p.OccASP2 = 1
-        if p.OppASP3 == 1 and p.PunishmentTo3 > 0:
-            p.OccASP3 = 1
-        if p.OppASP4 == 1 and p.PunishmentTo4 > 0:
-            p.OccASP4 = 1
-
-    for p in players:
-        p.TotalOccASP = p.OccASP1 + p.OccASP2 + p.OccASP3 + p.OccASP4
-
 
 # ======================
 #       PAGE PART
@@ -268,7 +242,9 @@ class InstructionsPage2_1(Page):
 
     def is_displayed(player: Player):
         return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
-
+        
+    def before_next_page(player: Player, timeout_happened):
+        player.participant.vars['MaxASP'] = 11
 
 class InstructionsPage2_2(Page):
     form_model = "player"
@@ -392,7 +368,11 @@ class InformationScreen_N(Page):
         return dict(
             other_players=player.get_others_in_group(),
         )
-
+    def before_next_page(player: Player, timeout_happened):
+        if player.TypeMarker == 1:
+            player.participant.vars['type'] = 0
+        else: 
+            player.participant.vars['type'] = 1
 
 
 class InformationScreen_P(Page):
@@ -458,7 +438,30 @@ class RevisedResults(Page):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
 
     def before_next_page(player, timeout_happened):
-        if player.round_number == player.participant.vars['randomround']:
+        if player.TotalOccASP > player.participant.vars['MaxASP'] and player.participant.vars['type'] == 1:
+            player.participant.vars['MaxASP'] = player.TotalOccASP
+            player.participant.vars['EDispID'] = player.DispID
+            player.participant.vars['ECont1'] = player.ElicitedCont1
+            player.participant.vars['ECont2'] = player.ElicitedCont2
+            player.participant.vars['ECont3'] = player.ElicitedCont3
+            player.participant.vars['ECont4'] = player.ElicitedCont4
+            player.participant.vars['EPun1'] = player.PunishmentTo1
+            player.participant.vars['EPun2'] = player.PunishmentTo2
+            player.participant.vars['EPun3'] = player.PunishmentTo3
+            player.participant.vars['EPun4'] = player.PunishmentTo4
+            
+        if player.round_number == player.participant.vars['randomround'] and player.participant.vars['type'] == 0:
+            player.participant.vars['EDispID'] = player.DispID
+            player.participant.vars['ECont1'] = player.ElicitedCont1
+            player.participant.vars['ECont2'] = player.ElicitedCont2
+            player.participant.vars['ECont3'] = player.ElicitedCont3
+            player.participant.vars['ECont4'] = player.ElicitedCont4
+            player.participant.vars['EPun1'] = player.PunishmentTo1
+            player.participant.vars['EPun2'] = player.PunishmentTo2
+            player.participant.vars['EPun3'] = player.PunishmentTo3
+            player.participant.vars['EPun4'] = player.PunishmentTo4
+
+        if player.round_number == player.participant.vars['randomround'] and player.TotalOccASP == 0:
             player.participant.vars['EDispID'] = player.DispID
             player.participant.vars['ECont1'] = player.ElicitedCont1
             player.participant.vars['ECont2'] = player.ElicitedCont2
