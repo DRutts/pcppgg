@@ -403,7 +403,7 @@ class InformationScreen_P(Page):
 class PunishmentPage(Page):
     form_model = 'player'
     get_form_fields = Punishment_Fields
-    timeout_seconds = 10
+    timeout_seconds = 1
     #timeout_seconds = 60 * 2
 
     @staticmethod
@@ -417,10 +417,14 @@ class PunishmentPage(Page):
 
     def before_next_page(player, timeout_happened):
         if timeout_happened:
-            player.PunishmentTo1 = 0
-            player.PunishmentTo2 = 0
-            player.PunishmentTo3 = 0
-            player.PunishmentTo4 = 0
+            #player.PunishmentTo1 = 0
+            #player.PunishmentTo2 = 0
+            #player.PunishmentTo3 = 0
+            #player.PunishmentTo4 = 0
+            player.PunishmentTo1 = random.randint(0, 1)
+            player.PunishmentTo2 = random.randint(0, 1)
+            player.PunishmentTo3 = random.randint(0, 1)
+            player.PunishmentTo4 = random.randint(0, 1)
             player.Timeout_P = 1
 
 
