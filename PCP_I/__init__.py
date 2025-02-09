@@ -118,6 +118,7 @@ def SetID(group: Group):
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
         p.RandomRound = random.randint(11,20)
+        p.TypeMarker = random.randint(1,5)
 
 
 def ShuffleID(group: Group):
