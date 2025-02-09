@@ -81,6 +81,15 @@ class Player(BasePlayer):
     PunishmentReason2 = models.StringField()
     PunishmentReason3 = models.StringField()
     PunishmentReason4 = models.StringField()
+    OppASP1 = models.IntegerField(initial = 0)
+    OppASP2 = models.IntegerField(initial = 0)
+    OppASP3 = models.IntegerField(initial = 0)
+    OppASP4 = models.IntegerField(initial = 0)
+    OccASP1 = models.IntegerField(initial = 0)
+    OccASP2 = models.IntegerField(initial = 0)
+    OccASP3 = models.IntegerField(initial = 0)
+    OccASP4 = models.IntegerField(initial = 0)
+    TotalOccASP = models.IntegerField(initial = 0)
     Q2_1 = models.IntegerField(
         label = 'Suppose that, in the second phase, you send 9, 5, and 0 deduction points to the other three players, respectively. What is the total cost of the deduction points you sent?'
     )
@@ -169,6 +178,17 @@ def SetPrelimPayoffs_P(group: Group):
             p.ElicitedCont3 = contributions[2]
             p.ElicitedCont4 = contributions[3]
 
+    for p in players:
+        if p.DispID != 1 and p.Contribution <= contributions[0]:
+            p.OppASP1 = 1
+        if p.DispID != 2 and p.Contribution <= contributions[1]:
+            p.OppASP2 = 1
+        if p.DispID != 3 and p.Contribution <= contributions[2]:
+            p.OppASP3 = 1
+        if p.DispID != 4 and p.Contribution <= contributions[2]:
+            p.OppASP2 = 1
+
+
 
 def SetRevisedPayoffs(group: Group):
     players = group.get_players()
@@ -182,7 +202,47 @@ def SetRevisedPayoffs(group: Group):
         p.RevisedPayoff = p.PreliminaryPayoff - p.TotalPunishmentsFrom - p.PayoffReduction
         p.Rounded_RevisedPayoff = round(p.RevisedPayoff, 2)
 
+    for p in players:
+        if p.OppASP1 == 1 and p.PunishmentTo1 > 0:
+            p.OccASP1 = 1
+        if p.OppASP2 == 1 and p.PunishmentTo2 > 0:
+            p.OccASP2 = 1
+        if p.OppASP3 == 1 and p.PunishmentTo3 > 0:
+            p.OccASP3 = 1
+        if p.OppASP4 == 1 and p.PunishmentTo4 > 0:
+            p.OccASP4 = 1
 
+    for p in players:
+        p.TotalOccASP = p.OccASP1 + p.OccASP2 + p.OccASP3 + p.OccASP4
+
+
+def CalculateOppASP(group: Group):
+    players = group.get_players()
+    for p in players:
+        if p.DispID != 1 and p.Contribution <= contributions[0]:
+            p.OppASP1 = 1
+        if p.DispID != 2 and p.Contribution <= contributions[1]:
+            p.OppASP2 = 1
+        if p.DispID != 3 and p.Contribution <= contributions[2]:
+            p.OppASP3 = 1
+        if p.DispID != 4 and p.Contribution <= contributions[2]:
+            p.OppASP2 = 1
+        
+
+def CalculateOccASP(group: Group):
+    players = group.get_players()
+    for p in players:
+        if p.OppASP1 == 1 and p.PunishmentTo1 > 0:
+            p.OccASP1 = 1
+        if p.OppASP2 == 1 and p.PunishmentTo2 > 0:
+            p.OccASP2 = 1
+        if p.OppASP3 == 1 and p.PunishmentTo3 > 0:
+            p.OccASP3 = 1
+        if p.OppASP4 == 1 and p.PunishmentTo4 > 0:
+            p.OccASP4 = 1
+
+    for p in players:
+        p.TotalOccASP = p.OccASP1 + p.OccASP2 + p.OccASP3 + p.OccASP4
 
 
 # ======================
