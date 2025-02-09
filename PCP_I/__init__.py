@@ -418,7 +418,7 @@ class InformationScreen_P(Page):
 class PunishmentPage(Page):
     form_model = 'player'
     get_form_fields = Punishment_Fields
-    timeout_seconds = 1
+    timeout_seconds = 10
     #timeout_seconds = 60 * 2
 
     @staticmethod
