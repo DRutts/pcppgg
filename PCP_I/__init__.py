@@ -248,7 +248,7 @@ class InstructionsPage2_1(Page):
         return player.round_number == 11 and player.participant.vars['boot'] == False and player.Remove == 0
         
     def before_next_page(player: Player, timeout_happened):
-        player.participant.vars['MaxASP'] = 11
+        player.participant.vars['MaxASP'] = 0
 
 class InstructionsPage2_2(Page):
     form_model = "player"
