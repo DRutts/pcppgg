@@ -448,6 +448,7 @@ class RevisedResults(Page):
     def before_next_page(player, timeout_happened):
         if player.TotalOccASP > player.participant.vars['MaxASP'] and player.participant.vars['type'] == 1:
             player.participant.vars['MaxASP'] = player.TotalOccASP
+            player.participant.vars['randomround'] = player.round_number
             player.participant.vars['EDispID'] = player.DispID
             player.participant.vars['ECont1'] = player.ElicitedCont1
             player.participant.vars['ECont2'] = player.ElicitedCont2
