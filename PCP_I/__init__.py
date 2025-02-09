@@ -367,10 +367,11 @@ class InformationScreen_N(Page):
             other_players=player.get_others_in_group(),
         )
     def before_next_page(player: Player, timeout_happened):
-        if player.TypeMarker == 1 and player.round_number == 1:
-            player.participant.vars['type'] = 0
-        else: 
-            player.participant.vars['type'] = 1
+        if player.round_number == 1:
+            if player.TypeMarker == 1:
+                player.participant.vars['type'] = 0
+            else: 
+                player.participant.vars['type'] = 1
 
 
 class InformationScreen_P(Page):
