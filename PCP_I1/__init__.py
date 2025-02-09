@@ -43,7 +43,7 @@ class Player(BasePlayer):
         label = 'Each member of the group has an endowment of 20 tokens. Suppose that you contribute 8 tokens to the project and suppose that the other group members contribute a total of 22 tokens to the project. What is your TOTAL earnings from the round?'
     )
     num_failed_attempts_1 = models.IntegerField(initial=0)
-    TypeMarker = models.IntegerField(initial = 0)
+
 
 
 
@@ -55,8 +55,7 @@ class Player(BasePlayer):
 #    CALCULATION PART
 # ======================
 
-def AssignType(player: Player):
-    player.TypeMarker = randint(1, 5)
+
 
 
 # ======================
@@ -172,10 +171,8 @@ class InstructionsPage1_4(Page):
         player.participant.vars['wait_page_arrival_time'] = time.time()
         if player.keep == 1:
             player.participant.vars['boot'] = True
-            player.participant.vars['type'] = player.TypeMarker
         else: 
             player.participant.vars['boot'] = False
-            player.participant.vars['type'] = 0
 
 class Elimination(Page):
     @staticmethod
