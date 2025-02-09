@@ -20,7 +20,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = ['boot', 'wait_page_arrival_time', 'WTL', 'randomround', 'MaxASP', 'ECont1', 'ECont2', 'ECont3', 'ECont4', 'EPun1', 'EPun2', 'EPun3', 'EPun4', 'EDispID']
+PARTICIPANT_FIELDS = ['boot', 'wait_page_arrival_time', 'WTL', 'randomround', 'type', 'MaxASP', 'ECont1', 'ECont2', 'ECont3', 'ECont4', 'EPun1', 'EPun2', 'EPun3', 'EPun4', 'EDispID']
 SESSION_FIELDS = []
 
 # ISO-639 code
