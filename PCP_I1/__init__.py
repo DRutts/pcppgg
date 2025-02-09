@@ -129,23 +129,24 @@ class Captcha2(Page):
             player.keep = 1
         else: 
             player.TimeoutCapthca2 = False
-            
+
+
 class InstructionsPage1_1(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.keep == 0
+
 
 class InstructionsPage1_2(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.keep == 0
 
+
 class InstructionsPage1_3(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.keep == 0
-    def before_next_page(player: Player, timeout_happened):
-        AssignType
         
 
 class InstructionsPage1_4(Page):
