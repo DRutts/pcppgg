@@ -50,7 +50,6 @@ class Player(BasePlayer):
     Remove = models.IntegerField(initial = 0)
     PID = models.IntegerField()
     DispID = models.IntegerField()
-    TypeMarker = models.IntegerField()
     Timeout_C = models.IntegerField(initial = 0)
     Timeout_P = models.IntegerField(initial = 0)
     Contribution = models.IntegerField(
@@ -119,7 +118,6 @@ def SetID(group: Group):
     for p in players:
         p.DispID = DispIDList[p.id_in_group - 1]
         p.RandomRound = random.randint(11,20)
-        p.TypeMarker = random.randint(1, 5)
 
 
 def ShuffleID(group: Group):
