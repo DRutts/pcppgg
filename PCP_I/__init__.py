@@ -174,11 +174,10 @@ def SetPrelimPayoffs_P(group: Group):
         p.ContributionPercentage = p.Contribution/C.ENDOWMENT_P * 100
         p.RetainedEndowment = C.ENDOWMENT_P - p.Contribution
         p.PreliminaryPayoff = C.ENDOWMENT_P - p.Contribution + group.Rounded_PGEarnings
-        if p.round_number == p.participant.vars['randomround']:
-            p.ElicitedCont1 = contributions[0]
-            p.ElicitedCont2 = contributions[1]
-            p.ElicitedCont3 = contributions[2]
-            p.ElicitedCont4 = contributions[3]
+        p.ElicitedCont1 = contributions[0]
+        p.ElicitedCont2 = contributions[1]
+        p.ElicitedCont3 = contributions[2]
+        p.ElicitedCont4 = contributions[3]
 
     for p in players:
         if p.DispID != 1 and p.Contribution <= contributions[0]:
