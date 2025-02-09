@@ -55,7 +55,7 @@ class Player(BasePlayer):
 #    CALCULATION PART
 # ======================
 
-def SetID(player: Player):
+def AssignType(player: Player):
     player.TypeMarker = randint(1, 5)
 
 
