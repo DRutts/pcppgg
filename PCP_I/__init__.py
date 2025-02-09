@@ -205,13 +205,13 @@ def SetRevisedPayoffs(group: Group):
         p.Rounded_RevisedPayoff = round(p.RevisedPayoff, 2)
 
     for p in players:
-        if p.OppASP1 == 1 and p.field_maybe_none(PunishmentTo1) > 0:
+        if p.OppASP1 == 1 and p.field_maybe_none('PunishmentTo1') > 0:
             p.OccASP1 = 1
-        if p.OppASP2 == 1 and p.field_maybe_none(PunishmentTo2) > 0:
+        if p.OppASP2 == 1 and p.field_maybe_none('PunishmentTo2') > 0:
             p.OccASP2 = 1
-        if p.OppASP3 == 1 and p.field_maybe_none(PunishmentTo3) > 0:
+        if p.OppASP3 == 1 and p.field_maybe_none('PunishmentTo3') > 0:
             p.OccASP3 = 1
-        if p.OppASP4 == 1 and p.field_maybe_none(PunishmentTo4) > 0:
+        if p.OppASP4 == 1 and p.field_maybe_none('PunishmentTo4') > 0:
             p.OccASP4 = 1
 
     for p in players:
