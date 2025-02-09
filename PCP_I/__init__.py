@@ -43,7 +43,7 @@ class Group(BaseGroup):
 
 def make_punishment_field(id_in_group):
         return models.IntegerField(
-            initial = 0, min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
+            min=0, max=C.MAX_PUNISHMENT, label="Deduction assigned to Player {}".format(id_in_group)
         )
 
 class Player(BasePlayer):
@@ -450,10 +450,26 @@ class RevisedResults(Page):
             player.participant.vars['ECont2'] = player.ElicitedCont2
             player.participant.vars['ECont3'] = player.ElicitedCont3
             player.participant.vars['ECont4'] = player.ElicitedCont4
-            player.participant.vars['EPun1'] = player.PunishmentTo1
-            player.participant.vars['EPun2'] = player.PunishmentTo2
-            player.participant.vars['EPun3'] = player.PunishmentTo3
-            player.participant.vars['EPun4'] = player.PunishmentTo4
+            
+            if player.DispID != 1:
+                player.participant.vars['EPun1'] = player.PunishmentTo1
+            else:
+                player.participant.vars['EPun1'] = 0
+                
+            if player.DispID != 2:
+                player.participant.vars['EPun2'] = player.PunishmentTo2
+            else:
+                player.participant.vars['EPun2'] = 0
+                
+            if player.DispID != 3:
+                player.participant.vars['EPun3'] = player.PunishmentTo3
+            else:
+                player.participant.vars['EPun3'] = 0
+
+            if player.DispID != 4:
+                player.participant.vars['EPun4'] = player.PunishmentTo4
+            else:
+                player.participant.vars['EPun4'] = 0
             
         if player.round_number == player.participant.vars['randomround'] and player.participant.vars['type'] == 0:
             player.participant.vars['EDispID'] = player.DispID
@@ -461,10 +477,26 @@ class RevisedResults(Page):
             player.participant.vars['ECont2'] = player.ElicitedCont2
             player.participant.vars['ECont3'] = player.ElicitedCont3
             player.participant.vars['ECont4'] = player.ElicitedCont4
-            player.participant.vars['EPun1'] = player.PunishmentTo1
-            player.participant.vars['EPun2'] = player.PunishmentTo2
-            player.participant.vars['EPun3'] = player.PunishmentTo3
-            player.participant.vars['EPun4'] = player.PunishmentTo4
+            
+            if player.DispID != 1:
+                player.participant.vars['EPun1'] = player.PunishmentTo1
+            else:
+                player.participant.vars['EPun1'] = 0
+                
+            if player.DispID != 2:
+                player.participant.vars['EPun2'] = player.PunishmentTo2
+            else:
+                player.participant.vars['EPun2'] = 0
+                
+            if player.DispID != 3:
+                player.participant.vars['EPun3'] = player.PunishmentTo3
+            else:
+                player.participant.vars['EPun3'] = 0
+
+            if player.DispID != 4:
+                player.participant.vars['EPun4'] = player.PunishmentTo4
+            else:
+                player.participant.vars['EPun4'] = 0
 
         if player.round_number == player.participant.vars['randomround'] and player.TotalOccASP == 0:
             player.participant.vars['EDispID'] = player.DispID
@@ -472,10 +504,26 @@ class RevisedResults(Page):
             player.participant.vars['ECont2'] = player.ElicitedCont2
             player.participant.vars['ECont3'] = player.ElicitedCont3
             player.participant.vars['ECont4'] = player.ElicitedCont4
-            player.participant.vars['EPun1'] = player.PunishmentTo1
-            player.participant.vars['EPun2'] = player.PunishmentTo2
-            player.participant.vars['EPun3'] = player.PunishmentTo3
-            player.participant.vars['EPun4'] = player.PunishmentTo4
+            
+            if player.DispID != 1:
+                player.participant.vars['EPun1'] = player.PunishmentTo1
+            else:
+                player.participant.vars['EPun1'] = 0
+                
+            if player.DispID != 2:
+                player.participant.vars['EPun2'] = player.PunishmentTo2
+            else:
+                player.participant.vars['EPun2'] = 0
+                
+            if player.DispID != 3:
+                player.participant.vars['EPun3'] = player.PunishmentTo3
+            else:
+                player.participant.vars['EPun3'] = 0
+
+            if player.DispID != 4:
+                player.participant.vars['EPun4'] = player.PunishmentTo4
+            else:
+                player.participant.vars['EPun4'] = 0
             
 
 
