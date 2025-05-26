@@ -160,7 +160,7 @@
     <br>
 {{ if player.EDispID != 1 }}
     <p>
-        You chose to deduct {{ player.EPun1 }} token(s) from Player 1.
+        <b>You chose to deduct {{ player.EPun1 }} token(s) from Player 1.</b>
     </p>
     {{ formfield 'Deserved1' }}
     <br>
@@ -169,11 +169,13 @@
     </p>
     {{ formfield 'PunishmentReason1' }}
     <br>
+    <br>
+    <br>
 {{ endif }}
 
 {{ if player.EDispID != 2 }}
     <p>
-        You chose to deduct {{ player.EPun2 }} tokens from Player 2.
+        <b>You chose to deduct {{ player.EPun2 }} token(s) from Player 2.</b>
     </p>
     {{ formfield 'Deserved2' }}
     <br>
@@ -182,11 +184,13 @@
     </p>
     {{ formfield 'PunishmentReason2' }}
     <br>
+    <br>
+    <br>
 {{ endif }}
 
 {{ if player.EDispID != 3 }}
     <p>
-        You chose to deduct {{ player.EPun3 }} tokens from Player 3.
+        <b>You chose to deduct {{ player.EPun3 }} token(s) from Player 3.</b>
     </p>
     {{ formfield 'Deserved3' }}
     <br>
@@ -195,11 +199,13 @@
     </p>
     {{ formfield 'PunishmentReason3' }}
     <br>
+    <br>
+    <br>
 {{ endif }}
 
 {{ if player.EDispID != 4 }}
     <p>
-        You chose to deduct {{ player.EPun4 }} tokens from Player 4.
+        <b>You chose to deduct {{ player.EPun4 }} token(s) from Player 4.</b>
     </p>
     {{ formfield 'Deserved4' }}
     <br>
@@ -207,6 +213,8 @@
         Why did you choose to deduct {{ player.EPun4 }} token(s) from Player 4?
     </p>
     {{ formfield 'PunishmentReason4' }}
+    <br>
+    <br>
     <br>
 {{ endif }}
 
