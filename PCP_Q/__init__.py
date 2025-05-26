@@ -157,7 +157,7 @@ class Transition(Page):
 
 class PunishmentReason(Page):
     form_model = 'player'
-    form_fields = ['PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
+    form_fields = ['Deserved1', 'Deserved2', 'Deserved3', 'Deserved4', 'PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
