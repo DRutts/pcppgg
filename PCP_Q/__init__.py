@@ -35,7 +35,7 @@ class Player(BasePlayer):
     EPun3 = models.IntegerField()
     EPun4 = models.IntegerField()
     Deserved1 = models.StringField(
-        label='',
+        label='To what extent do you agree that Player 1 deserved to receive deduction points?',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
@@ -43,7 +43,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
     Deserved2 = models.StringField(
-        label='',
+        label='To what extent do you agree that Player 2 deserved to receive deduction points?',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
@@ -51,7 +51,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
     Deserved3 = models.StringField(
-        label='',
+        label='To what extent do you agree that Player 3 deserved to receive deduction points?',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
@@ -59,7 +59,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
     Deserved4 = models.StringField(
-        label='',
+        label='To what extent do you agree that Player 4 deserved to receive deduction points?',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
