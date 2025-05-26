@@ -39,28 +39,32 @@ class Player(BasePlayer):
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
-                 [3, 'Agree']]
+                 [3, 'Agree']],
+        widget=widgets.RadioSelect
     )
     Deserved2 = models.StringField(
         label='',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
-                 [3, 'Agree']]
+                 [3, 'Agree']],
+        widget=widgets.RadioSelect
     )
     Deserved3 = models.StringField(
         label='',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
-                 [3, 'Agree']]
+                 [3, 'Agree']],
+        widget=widgets.RadioSelect
     )
     Deserved4 = models.StringField(
         label='',
         choices=[[0, 'Disagree'], 
                  [1, 'Somewhat disagree'], 
                  [2, 'Somewhat agree'], 
-                 [3, 'Agree']]
+                 [3, 'Agree']],
+        widget=widgets.RadioSelect
     )
     PunishmentReason1 = models.StringField(min_length = 10, max_length = 300,
                                           label = '')
