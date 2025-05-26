@@ -20,19 +20,19 @@
 
         </tr>
         <tr>
-            <td>2</td>
+            <td>Player 2</td>
             <td>25</td>
             <td>{{ player.ECont2 }}</td>
 
         </tr>
         <tr>
-            <td>3</td>
+            <td>Player 3</td>
             <td>25</td>
             <td>{{ player.ECont3 }}</td>
 
         </tr>
         <tr>
-            <td>4</td>
+            <td>Player 4</td>
             <td>25</td>
             <td>{{ player.ECont4 }}</td>
 
@@ -57,19 +57,19 @@
 
         </tr>
         <tr>
-            <td>1</td>
+            <td>Player 1</td>
             <td>25</td>
             <td>{{ player.ECont1 }}</td>
 
         </tr>
         <tr>
-            <td>3</td>
+            <td>Player 3</td>
             <td>25</td>
             <td>{{ player.ECont3 }}</td>
 
         </tr>
         <tr>
-            <td>4</td>
+            <td>Player 4</td>
             <td>25</td>
             <td>{{ player.ECont4 }}</td>
 
@@ -94,19 +94,19 @@
 
         </tr>
         <tr>
-            <td>1</td>
+            <td>Player 1</td>
             <td>25</td>
             <td>{{ player.ECont1 }}</td>
 
         </tr>
         <tr>
-            <td>2</td>
+            <td>Player 2</td>
             <td>25</td>
             <td>{{ player.ECont2 }}</td>
 
         </tr>
         <tr>
-            <td>4</td>
+            <td>Player 4</td>
             <td>25</td>
             <td>{{ player.ECont4 }}</td>
 
@@ -131,19 +131,19 @@
 
         </tr>
         <tr>
-            <td>1</td>
+            <td>Player 1</td>
             <td>25</td>
             <td>{{ player.ECont1 }}</td>
 
         </tr>
         <tr>
-            <td>2</td>
+            <td>Player 2</td>
             <td>25</td>
             <td>{{ player.ECont2 }}</td>
 
         </tr>
         <tr>
-            <td>3</td>
+            <td>Player 3</td>
             <td>25</td>
             <td>{{ player.ECont3 }}</td>
 
@@ -160,14 +160,31 @@
     <br>
 {{ if player.EDispID != 1 }}
     <p>
-        You chose to deduct {{ player.EPun1 }} tokens from Player 1.
+        You chose to deduct {{ player.EPun1 }} token(s) from Player 1.
+    </p>
+    <p>
+        To what extent did Player 1 deserve to receive deduction points?
+    </p>
+    {{ formfield 'Deserved1' }}
+    <br>
+    <p>
+        Why did you choose to deduct {{ player.EPun1 }} token(s) from Player 1?
     </p>
     {{ formfield 'PunishmentReason1' }}
     <br>
 {{ endif }}
+
 {{ if player.EDispID != 2 }}
     <p>
         You chose to deduct {{ player.EPun2 }} tokens from Player 2.
+    </p>
+    <p>
+        To what extent did Player 2 deserve to receive deduction points?
+    </p>
+    {{ formfield 'Deserved2' }}
+    <br>
+    <p>
+        Why did you choose to deduct {{ player.EPun2 }} token(s) from Player 2?
     </p>
     {{ formfield 'PunishmentReason2' }}
     <br>
@@ -176,12 +193,28 @@
     <p>
         You chose to deduct {{ player.EPun3 }} tokens from Player 3.
     </p>
+    <p>
+        To what extent did Player 3 deserve to receive deduction points?
+    </p>
+    {{ formfield 'Deserved3' }}
+    <br>
+    <p>
+        Why did you choose to deduct {{ player.EPun3 }} token(s) from Player 3?
+    </p>
     {{ formfield 'PunishmentReason3' }}
     <br>
 {{ endif }}
 {{ if player.EDispID != 4 }}
     <p>
         You chose to deduct {{ player.EPun4 }} tokens from Player 4.
+    </p>
+    <p>
+        To what extent did Player 4 deserve to receive deduction points?
+    </p>
+    {{ formfield 'Deserved4' }}
+    <br>
+    <p>
+        Why did you choose to deduct {{ player.EPun4 }} token(s) from Player 4?
     </p>
     {{ formfield 'PunishmentReason4' }}
     <br>
