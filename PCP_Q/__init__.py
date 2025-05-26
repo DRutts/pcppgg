@@ -34,14 +34,42 @@ class Player(BasePlayer):
     EPun2 = models.IntegerField()
     EPun3 = models.IntegerField()
     EPun4 = models.IntegerField()
+    Deserved1 = models.StringField(
+        label='',
+        choices=[[0, 'Disagree'], 
+                 [1, 'Somewhat disagree'], 
+                 [2, 'Somewhat agree'], 
+                 [3, 'Agree']]
+    )
+    Deserved2 = models.StringField(
+        label='',
+        choices=[[0, 'Disagree'], 
+                 [1, 'Somewhat disagree'], 
+                 [2, 'Somewhat agree'], 
+                 [3, 'Agree']]
+    )
+    Deserved3 = models.StringField(
+        label='',
+        choices=[[0, 'Disagree'], 
+                 [1, 'Somewhat disagree'], 
+                 [2, 'Somewhat agree'], 
+                 [3, 'Agree']]
+    )
+    Deserved4 = models.StringField(
+        label='',
+        choices=[[0, 'Disagree'], 
+                 [1, 'Somewhat disagree'], 
+                 [2, 'Somewhat agree'], 
+                 [3, 'Agree']]
+    )
     PunishmentReason1 = models.StringField(min_length = 10, max_length = 300,
-                                          label = 'Please explain briefly why you made this decision.')
+                                          label = '')
     PunishmentReason2 = models.StringField(min_length = 10, max_length = 300,
-                                          label = 'Please explain briefly why you made this decision.')
+                                          label = '')
     PunishmentReason3 = models.StringField(min_length = 10, max_length = 300,
-                                          label = 'Please explain briefly why you made this decision.')
+                                          label = '')
     PunishmentReason4 = models.StringField(min_length = 10, max_length = 300,
-                                          label = 'Please explain briefly why you made this decision.')
+                                          label = '')
     
     QQ1 = models.IntegerField(
         min=0, label='1) What is your age?'
