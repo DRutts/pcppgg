@@ -27,12 +27,12 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     consent = models.FloatField(
-            choices=[[1, 'I consent']],
+            choices=[[1, 'I agree to participate in this study.']],
             label = '',
             widget=widgets.RadioSelect
         )
     keep = models.IntegerField(initial = 0)
-    prolificID = models.StringField(min_length = 1, max_length = 200)
+    prolificID = models.StringField(label = '', min_length = 1, max_length = 200)
     captcha1 = models.StringField(max_length = 200)
     captcha2 = models.StringField(max_length = 200)
     incorrect_attempts_captcha1 = models.IntegerField(initial = 0)
@@ -68,7 +68,7 @@ class Consent(Page):
 
     @staticmethod
     def consent_error_message(player: Player, value):
-        solutions = dict(consent='I consent')
+        solutions = dict(consent='I agree to participate in this study.')
         errors = {name: '''You must accept the consent form to proceed with the study''' for name in solutions if values[name] != solutions[name]}
         if errors:
             return errors
