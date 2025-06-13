@@ -155,12 +155,33 @@ class Transition(Page):
         player.EPun4 = player.participant.vars['EPun4']
 
 
-class PunishmentReason(Page):
+class PunishmentReasonP1(Page):
     form_model = 'player'
-    form_fields = ['Deserved1', 'Deserved2', 'Deserved3', 'Deserved4', 'PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
+    form_fields = ['Deserved2', 'Deserved3', 'Deserved4', 'PunishmentReason2', 'PunishmentReason3', 'PunishmentReason4']
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.participant.vars['EDispID'] == 1
+
+class PunishmentReasonP2(Page):
+    form_model = 'player'
+    form_fields = ['Deserved1', 'Deserved3', 'Deserved4', 'PunishmentReason1', 'PunishmentReason3', 'PunishmentReason4']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.participant.vars['EDispID'] == 2
+
+class PunishmentReasonP3(Page):
+    form_model = 'player'
+    form_fields = ['Deserved1', 'Deserved2', 'Deserved4', 'PunishmentReason1', 'PunishmentReason2', 'PunishmentReason4']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.participant.vars['EDispID'] == 3
+
+class PunishmentReasonP4(Page):
+    form_model = 'player'
+    form_fields = ['Deserved1', 'Deserved2', 'Deserved3', 'PunishmentReason1', 'PunishmentReason2', 'PunishmentReason3']
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.vars['boot'] == False and player.participant.vars['WTL'] == False and player.participant.vars['EDispID'] == 4
 
 
 class Questionnaire(Page):
@@ -188,6 +209,10 @@ class Completion(Page):
     
 
 page_sequence = [Transition,
+                 PunishmentReasonP1,
+                 PunishmentReasonP2,
+                 PunishmentReasonP3,
+                 PunishmentReasonP4,
                  Questionnaire,
                  Questionnaire2,
                  Completion]
