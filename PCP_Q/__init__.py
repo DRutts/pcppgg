@@ -188,7 +188,6 @@ class Completion(Page):
     
 
 page_sequence = [Transition,
-                 PunishmentReason,
                  Questionnaire,
                  Questionnaire2,
                  Completion]
