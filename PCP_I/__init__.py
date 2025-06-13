@@ -232,8 +232,8 @@ class GroupingWaitPage(WaitPage):
     
 
 class InstructionsPage2_1(Page):
-    timeout_seconds = 1
-    #timeout_seconds = 60 * 2
+    #timeout_seconds = 1
+    timeout_seconds = 60 * 2
     
     @staticmethod
 
@@ -246,8 +246,8 @@ class InstructionsPage2_1(Page):
 class InstructionsPage2_2(Page):
     form_model = "player"
     form_fields = ["Q2_1", "Q2_2"]
-    timeout_seconds = 1
-    #timeout_seconds = 60 * 3
+    #timeout_seconds = 1
+    timeout_seconds = 60 * 3
     
     @staticmethod
 
@@ -294,8 +294,8 @@ class Inter_RoundWaitPage_P(WaitPage):
 class ContributionPage_N(Page):
     form_model = "player"
     form_fields = ["Contribution"]
-    timeout_seconds = 1
-    #timeout_seconds = 60
+    #timeout_seconds = 1
+    timeout_seconds = 60
 
     @staticmethod
     def is_displayed(player: Player):
@@ -311,8 +311,8 @@ class ContributionPage_N(Page):
 class ContributionPage_P(Page):
     form_model = "player"
     form_fields = ["Contribution"]
-    timeout_seconds = 1
-    #timeout_seconds = 60
+    #timeout_seconds = 1
+    timeout_seconds = 60
 
     @staticmethod
     def is_displayed(player: Player):
@@ -344,8 +344,8 @@ class ResultsWaitPage_P(WaitPage):
 
 
 class PreliminaryResults(Page):
-    timeout_seconds = 1
-    #timeout_seconds = 30
+    #timeout_seconds = 1
+    timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
         return player.participant.vars['boot'] == False and player.Remove == 0
@@ -355,8 +355,8 @@ class PreliminaryResults(Page):
 
 
 class InformationScreen_N(Page):
-    timeout_seconds = 1
-    #timeout_seconds = 30
+    #timeout_seconds = 1
+    timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number <= 10 and player.participant.vars['boot'] == False and player.Remove == 0
@@ -374,8 +374,8 @@ class InformationScreen_N(Page):
 
 
 class InformationScreen_P(Page):
-    timeout_seconds = 1
-    #timeout_seconds = 30
+    #timeout_seconds = 1
+    timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
@@ -396,8 +396,8 @@ class InformationScreen_P(Page):
 class PunishmentPage(Page):
     form_model = 'player'
     get_form_fields = Punishment_Fields
-    timeout_seconds = 1
-    #timeout_seconds = 60 * 2
+    #timeout_seconds = 1
+    timeout_seconds = 60 * 2
 
     @staticmethod
     def is_displayed(player: Player):
@@ -432,8 +432,8 @@ class PunishmentWaitPage(WaitPage):
 
 
 class RevisedResults(Page):
-    timeout_seconds = 1
-    #timeout_seconds = 30
+    #timeout_seconds = 1
+    timeout_seconds = 30
 
     @staticmethod
     def is_displayed(player: Player):
