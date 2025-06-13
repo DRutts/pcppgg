@@ -374,8 +374,8 @@ class InformationScreen_N(Page):
 
 
 class InformationScreen_P(Page):
-    #timeout_seconds = 1
-    timeout_seconds = 30
+    timeout_seconds = 1
+    #timeout_seconds = 30
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number >= 11 and player.participant.vars['boot'] == False and player.Remove == 0
