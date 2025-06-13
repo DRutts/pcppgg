@@ -2,10 +2,9 @@
 {{ block content }}
 
     <p>
-        In Round {{ player.RandomRound }}, you were Player {{ player.EDispID }}. Here are the players' contributions:
+        In Round {{ player.RandomRound }}, you were Player 1. Here are the players' contributions:
     </p>
 
-{{ if player.EDispID == 1 }}
         <table class="table">
         <tr>
             <th>Player</th>
@@ -39,120 +38,6 @@
         </tr>
 
     </table>
-
-{{ endif }}
-
-{{ if player.EDispID == 2 }}
-        <table class="table">
-        <tr>
-            <th>Player</th>
-            <th>Endowment</th>
-            <th>Contribution</th>
-
-        </tr>
-        <tr>
-            <td>You</td>
-            <td>25</td>
-            <td>{{ player.ECont2 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 1</td>
-            <td>25</td>
-            <td>{{ player.ECont1 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 3</td>
-            <td>25</td>
-            <td>{{ player.ECont3 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 4</td>
-            <td>25</td>
-            <td>{{ player.ECont4 }}</td>
-
-        </tr>
-
-    </table>
-
-{{ endif }}
-
-{{ if player.EDispID == 3 }}
-        <table class="table">
-        <tr>
-            <th>Player</th>
-            <th>Endowment</th>
-            <th>Contribution</th>
-
-        </tr>
-        <tr>
-            <td>You</td>
-            <td>25</td>
-            <td>{{ player.ECont3 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 1</td>
-            <td>25</td>
-            <td>{{ player.ECont1 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 2</td>
-            <td>25</td>
-            <td>{{ player.ECont2 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 4</td>
-            <td>25</td>
-            <td>{{ player.ECont4 }}</td>
-
-        </tr>
-
-    </table>
-
-{{ endif }}
-
-{{ if player.EDispID == 4 }}
-        <table class="table">
-        <tr>
-            <th>Player</th>
-            <th>Endowment</th>
-            <th>Contribution</th>
-
-        </tr>
-        <tr>
-            <td>You</td>
-            <td>25</td>
-            <td>{{ player.ECont4 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 1</td>
-            <td>25</td>
-            <td>{{ player.ECont1 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 2</td>
-            <td>25</td>
-            <td>{{ player.ECont2 }}</td>
-
-        </tr>
-        <tr>
-            <td>Player 3</td>
-            <td>25</td>
-            <td>{{ player.ECont3 }}</td>
-
-        </tr>
-
-    </table>
-
-{{ endif }}
-
     <br>
     <p>
         You will now be asked questions about your decisions in stage 2 of Round {{ player.RandomRound }}. Your answers to the following questions will <b>NOT</b> be shared with any of the other players at any time.
@@ -160,22 +45,9 @@
     <br>
     <br>
     <br>
-{{ if player.EDispID != 1 }}
-    <p>
-        <b>You chose to send {{ player.EPun1 }} deduction point(s) to Player 1.</b>
-    </p>
-    {{ formfield 'Deserved1' }}
-    <br>
-    <p>
-        Why did you choose to send {{ player.EPun1 }} deduction point(s) to Player 1?
-    </p>
-    {{ formfield 'PunishmentReason1' }}
-    <br>
-    <br>
-    <br>
-{{ endif }}
 
-{{ if player.EDispID != 2 }}
+
+
     <p>
         <b>You chose to send {{ player.EPun2 }} deduction point(s) to Player 2.</b>
     </p>
@@ -188,9 +60,8 @@
     <br>
     <br>
     <br>
-{{ endif }}
 
-{{ if player.EDispID != 3 }}
+
     <p>
         <b>You chose to send {{ player.EPun3 }} deduction point(s) to Player 3.</b>
     </p>
@@ -203,9 +74,7 @@
     <br>
     <br>
     <br>
-{{ endif }}
 
-{{ if player.EDispID != 4 }}
     <p>
         <b>You chose to send {{ player.EPun4 }} deduction point(s) to Player 4.</b>
     </p>
@@ -218,7 +87,7 @@
     <br>
     <br>
     <br>
-{{ endif }}
+
 
 
 
