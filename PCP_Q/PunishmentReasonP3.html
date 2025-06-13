@@ -2,7 +2,7 @@
 {{ block content }}
 
     <p>
-        In Round {{ player.RandomRound }}, you were Player {{ player.EDispID }}. Here are the players' contributions:
+        In Round {{ player.RandomRound }}, you were Player 3. Here are the players' contributions:
     </p>
         <table class="table">
         <tr>
@@ -39,23 +39,56 @@
     </table>
     <br>
     <p>
-        Your answers to the following questions will NOT be shared with any of the other players in your group.
+        You will now be asked questions about your decisions in stage 2 of Round {{ player.RandomRound }}. Your answers to the following questions will <b>NOT</b> be shared with any of the other players at any time.
     </p>
     <br>
+    <br>
+    <br>
+
     <p>
-        You chose to deduct {{ player.EPun1 }} tokens from Player 1.
+        <b>You chose to send {{ player.EPun1 }} deduction point(s) to Player 1.</b>
+    </p>
+    {{ formfield 'Deserved1' }}
+    <br>
+    <p>
+        Why did you choose to send {{ player.EPun1 }} deduction point(s) to Player 1?
     </p>
     {{ formfield 'PunishmentReason1' }}
     <br>
+    <br>
+    <br>
+
+
+
     <p>
-        You chose to deduct {{ player.EPun2 }} tokens from Player 2.
+        <b>You chose to send {{ player.EPun2 }} deduction point(s) to Player 2.</b>
+    </p>
+    {{ formfield 'Deserved2' }}
+    <br>
+    <p>
+        Why did you choose to send {{ player.EPun2 }} deduction point(s) to Player 2?
     </p>
     {{ formfield 'PunishmentReason2' }}
     <br>
+    <br>
+    <br>
+
+
+
+
     <p>
-        You chose to deduct {{ player.EPun4 }} tokens from Player 4.
+        <b>You chose to send {{ player.EPun4 }} deduction point(s) to Player 4.</b>
+    </p>
+    {{ formfield 'Deserved4' }}
+    <br>
+    <p>
+        Why did you choose to send {{ player.EPun4 }} deduction point(s) to Player 4?
     </p>
     {{ formfield 'PunishmentReason4' }}
+    <br>
+    <br>
+    <br>
+
 
 
 
