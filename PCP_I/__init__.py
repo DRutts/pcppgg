@@ -311,8 +311,8 @@ class ContributionPage_N(Page):
 class ContributionPage_P(Page):
     form_model = "player"
     form_fields = ["Contribution"]
-    #timeout_seconds = 1
-    timeout_seconds = 60
+    timeout_seconds = 1
+    #timeout_seconds = 60
 
     @staticmethod
     def is_displayed(player: Player):
